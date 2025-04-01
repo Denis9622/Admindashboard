@@ -11,9 +11,17 @@ const CustomSelect = ({ options, selected, onChange }) => {
 
   return (
     <div className={styles.dropdown}>
-      <div className={styles.dropdownHeader} onClick={() => setIsOpen(!isOpen)}>
-        {selected || "Select category"}
-        <span className={styles.arrow}></span>
+      <div
+        className={styles.dropdownHeader}
+        onClick={() => setIsOpen(!isOpen)}
+        tabIndex={0} // Добавляем tabIndex для фокуса
+      >
+        <span>{selected || "Category"}</span>
+        <span className={styles.arrow}>
+          <svg className={styles.iconx}>
+            <use href="/sprite.svg#icon-chevron-down"></use>
+          </svg>
+        </span>
       </div>
       {isOpen && (
         <ul className={styles.dropdownList}>

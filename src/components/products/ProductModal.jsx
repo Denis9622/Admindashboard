@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import {
   addProduct,
   updateProduct,
+  fetchProducts,
 } from "../../redux/products/productsOperations.js";
 import CustomSelect from "./CustomSelect.jsx";
 import styles from "./productModal.module.css";
@@ -51,6 +52,7 @@ const ProductModal = ({ product, onClose }) => {
       } else {
         await dispatch(addProduct(updatedProduct)).unwrap();
       }
+      await dispatch(fetchProducts()); // Обновляем список продуктов после изменения
       onClose();
     } catch (error) {
       console.error("Ошибка обновления продукта:", error);
@@ -60,8 +62,13 @@ const ProductModal = ({ product, onClose }) => {
   return (
     <div className={styles.modalOverlay}>
       <div className={styles.modal}>
+        <button className={styles.closeButton} onClick={onClose}>
+          <svg className={styles.iconx}>
+            <use href="/sprite.svg#icon-x"></use>
+          </svg>
+        </button>
         <h2>{product ? "Edit Product" : "Add a new product"}</h2>
-        <form onSubmit={handleSubmit} className={styles.form}>
+        <form className={styles.form}>
           <div className={styles.leftColumn}>
             <input
               type="text"
@@ -97,7 +104,6 @@ const ProductModal = ({ product, onClose }) => {
                 setFormData({ ...formData, category: value })
               }
             />
-
             <input
               type="text"
               name="suppliers"
@@ -109,7 +115,9 @@ const ProductModal = ({ product, onClose }) => {
           </div>
         </form>
         <div className={styles.buttonContainer}>
-          <button type="submit">{product ? "Save" : "Add"}</button>
+          <button className={styles.primaryButton} onClick={handleSubmit}>
+            {product ? "Save" : "Add"}
+          </button>
           <button type="button" onClick={onClose}>
             Cancel
           </button>

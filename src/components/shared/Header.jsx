@@ -4,7 +4,7 @@ import { useNavigate, NavLink } from "react-router-dom";
 import styles from "./Header.module.css";
 import Logo from "../assets/authenticatedLogo.svg"; // Логотип
 
-function Header() {
+function Header({ toggleSidebar }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -18,6 +18,11 @@ function Header() {
 
   return (
     <header className={styles.header}>
+      <button className={styles.menuButton} onClick={toggleSidebar}>
+        <svg className={styles.menuIcon}>
+          <use href="/sprite.svg#icon-menu"></use>
+        </svg>
+      </button>
       <NavLink to={isAuthenticated ? "/" : "/login"}>
         <img src={Logo} alt="Logo" className={styles.logoImg} />
       </NavLink>
@@ -40,10 +45,7 @@ function Header() {
           </ul>
         </nav>
         <div className={styles.userAuth}>
-          <button
-            onClick={handleLogout}
-            className={`${styles.linkAuth} ${styles.logoutUserButton}`}
-          >
+          <button onClick={handleLogout} className={styles.logoutUserButton}>
             <svg className={styles.icon}>
               <use href="/sprite.svg#logout"></use>
             </svg>

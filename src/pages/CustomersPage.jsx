@@ -2,11 +2,10 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   fetchCustomers,
-  addCustomer,
-  updateCustomer,
   deleteCustomer,
 } from "../redux/customers/customersOperations";
 import CustomersTable from "../components/customers/CustomersTable";
+import CustomerModal from "../components/customers/CustomerModal";
 import styles from "./customersPage.module.css";
 
 const CustomersPage = () => {
@@ -18,13 +17,7 @@ const CustomersPage = () => {
   } = useSelector((state) => state.customers);
   const [filterName, setFilterName] = useState("");
   const [filteredCustomers, setFilteredCustomers] = useState([]);
-  const [customerForm, setCustomerForm] = useState({
-    name: "",
-    email: "",
-    address: "",
-    phone: "",
-  });
-  const [editCustomerId, setEditCustomerId] = useState(null);
+  const [selectedCustomer, setSelectedCustomer] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
@@ -44,30 +37,8 @@ const CustomersPage = () => {
     setFilteredCustomers(filtered);
   };
 
-  const handleAddCustomer = () => {
-    dispatch(addCustomer(customerForm));
-    resetCustomerForm();
-    setIsModalOpen(false);
-  };
-
-  const handleUpdateCustomer = () => {
-    if (editCustomerId) {
-      dispatch(
-        updateCustomer({ id: editCustomerId, customerData: customerForm })
-      );
-      resetCustomerForm();
-      setIsModalOpen(false);
-    }
-  };
-
   const handleEditCustomer = (customer) => {
-    setCustomerForm({
-      name: customer.name,
-      email: customer.email,
-      address: customer.address,
-      phone: customer.phone,
-    });
-    setEditCustomerId(customer._id);
+    setSelectedCustomer(customer);
     setIsModalOpen(true);
   };
 
@@ -75,14 +46,9 @@ const CustomersPage = () => {
     dispatch(deleteCustomer(id));
   };
 
-  const resetCustomerForm = () => {
-    setCustomerForm({
-      name: "",
-      email: "",
-      address: "",
-      phone: "",
-    });
-    setEditCustomerId(null);
+  const handleCloseModal = () => {
+    setSelectedCustomer(null);
+    setIsModalOpen(false);
   };
 
   const indexOfLastCustomer = currentPage * itemsPerPage;
@@ -114,67 +80,12 @@ const CustomersPage = () => {
           className={styles.openModalButton}
           onClick={() => setIsModalOpen(true)}
         >
-          {editCustomerId ? "Edit Customer" : "Add Customer"}
+          Add Customer
         </button>
       </div>
 
       {isModalOpen && (
-        <div className={styles.modalBackdrop}>
-          <div className={styles.modal}>
-            <button
-              className={styles.modalClose}
-              onClick={() => {
-                resetCustomerForm();
-                setIsModalOpen(false);
-              }}
-            >
-              ✖
-            </button>
-            <h2>{editCustomerId ? "Edit Customer" : "Add Customer"}</h2>
-            <div className={styles.form}>
-              <input
-                type="text"
-                placeholder="Name"
-                value={customerForm.name}
-                onChange={(e) =>
-                  setCustomerForm({ ...customerForm, name: e.target.value })
-                }
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                value={customerForm.email}
-                onChange={(e) =>
-                  setCustomerForm({ ...customerForm, email: e.target.value })
-                }
-              />
-              <input
-                type="text"
-                placeholder="Address"
-                value={customerForm.address}
-                onChange={(e) =>
-                  setCustomerForm({ ...customerForm, address: e.target.value })
-                }
-              />
-              <input
-                type="text"
-                placeholder="Phone"
-                value={customerForm.phone}
-                onChange={(e) =>
-                  setCustomerForm({ ...customerForm, phone: e.target.value })
-                }
-              />
-              <button
-                onClick={
-                  editCustomerId ? handleUpdateCustomer : handleAddCustomer
-                }
-                className={styles.addButton}
-              >
-                {editCustomerId ? "Update Customer" : "Add Customer"}
-              </button>
-            </div>
-          </div>
-        </div>
+        <CustomerModal customer={selectedCustomer} onClose={handleCloseModal} />
       )}
 
       <CustomersTable
@@ -194,8 +105,7 @@ const CustomersPage = () => {
                   ? styles.activePageButton
                   : styles.pageButton
               }
-            >
-            </button>
+            ></button>
           )
         )}
       </div>

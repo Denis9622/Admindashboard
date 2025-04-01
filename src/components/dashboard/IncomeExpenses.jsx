@@ -13,8 +13,19 @@ const IncomeExpenses = () => {
     dispatch(fetchIncomeExpenses());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (error) {
+      console.error("Error in IncomeExpenses:", error);
+    }
+    if (transactions) {
+      console.log("Transactions received:", transactions);
+    }
+  }, [error, transactions]);
+
   if (loading) return <p>Loading transactions...</p>;
   if (error) return <p className={styles.error}>{error}</p>;
+
+  const safeTransactions = Array.isArray(transactions) ? transactions : [];
 
   return (
     <div className={styles.containerExpenses}>
@@ -22,8 +33,8 @@ const IncomeExpenses = () => {
       <div className={styles.incomeExpenses}>
         <div className={styles.today}>Today</div>
 
-        {transactions.length > 0 ? (
-          transactions.map((transaction, index) => (
+        {safeTransactions.length > 0 ? (
+          safeTransactions.map((transaction, index) => (
             <div key={index} className={styles.transaction}>
               <span
                 className={
@@ -33,7 +44,7 @@ const IncomeExpenses = () => {
                 {transaction.type}
               </span>
               <span className={styles.transactionName}>
-                {transaction.name || "Unknown"} 
+                {transaction.name || "Unknown"}
               </span>
               <span
                 className={styles.transactionAmount}
@@ -42,7 +53,7 @@ const IncomeExpenses = () => {
                 }}
               >
                 {transaction.type === "Income" ? "+" : "-"}$
-                {Math.abs(transaction.amount).toFixed(2)}
+                {Math.abs(transaction.amount || 0).toFixed(2)}
               </span>
             </div>
           ))

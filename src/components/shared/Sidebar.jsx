@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 import styles from "./sidebar.module.css"; // Подключаем стили
 
-const Sidebar = () => {
+const Sidebar = ({ isOpen }) => {
   return (
-    <nav className={styles.sidebar}>
+    <nav className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
       <ul className={styles.menu}>
         <li>
           <NavLink to="/dashboard" className={styles.menuItem}>

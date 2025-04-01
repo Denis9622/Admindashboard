@@ -29,7 +29,7 @@ const ProductsPage = () => {
           dispatch(refreshToken()).then(() => dispatch(fetchProducts()));
         }
       });
-  }, [dispatch]);
+  }, [dispatch, isModalOpen]); // Добавляем зависимость isModalOpen
 
   // Обработчик кнопки "Filter"
   const handleFilter = () => {
@@ -40,18 +40,24 @@ const ProductsPage = () => {
   };
 
   // Обработчик редактирования продукта
-  const handleEditProduct = (product) => {
+  const handleEditProduct = async (product) => {
     setCurrentProduct(product);
     setModalOpen(true);
   };
 
   // Обработчик удаления продукта
-  const handleDeleteProduct = (_id) => {
-    dispatch(deleteProduct(_id));
+  const handleDeleteProduct = async (_id) => {
+    try {
+      await dispatch(deleteProduct(_id)).unwrap(); // Удаляем продукт
+      const updatedProducts = items.filter((product) => product._id !== _id); // Обновляем локальное состояние
+      setFilteredProducts(updatedProducts); // Синхронизируем локальное состояние
+    } catch (error) {
+      console.error("Ошибка при удалении продукта:", error);
+    }
   };
 
   // Обработчик добавления продукта
-  const handleAddProduct = () => {
+  const handleAddProduct = async () => {
     setCurrentProduct(null);
     setModalOpen(true);
   };
@@ -111,8 +117,7 @@ const ProductsPage = () => {
                   ? styles.activePageButton
                   : styles.pageButton
               }
-            >
-            </button>
+            ></button>
           )
         )}
       </div>

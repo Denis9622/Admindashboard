@@ -51,11 +51,13 @@ const dashboardSlice = createSlice({
       })
       .addCase(fetchIncomeExpenses.fulfilled, (state, action) => {
         state.loading = false;
-        state.transactions = action.payload.transactions || [];
+        state.transactions = action.payload?.transactions || [];
+        state.error = null;
       })
       .addCase(fetchIncomeExpenses.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message;
+        state.error = action.payload?.message || "Ошибка загрузки транзакций";
+        state.transactions = [];
       })
       .addCase(fetchCustomersWithSpent.pending, (state) => {
         state.loading = true;

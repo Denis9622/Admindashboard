@@ -92,8 +92,8 @@
 ------------------------- */
 
 .buttonBox {
-  display: flex; 
-  gap: 8px; 
+  display: flex;
+  gap: 8px;
 }
 
 .editButton,
@@ -103,16 +103,16 @@
   align-items: center;
   width: 32px;
   height: 32px;
-  border-radius: 50%; 
+  border-radius: 50%;
   background: transparent;
 }
 
 .editButton {
-  border: 1px solid rgba(89, 177, 122, 0.5); 
+  border: 1px solid rgba(89, 177, 122, 0.5);
 }
 
 .deleteButton {
-  border: 1px solid rgba(232, 80, 80, 0.5); 
+  border: 1px solid rgba(232, 80, 80, 0.5);
 }
 
 /* -------------------------
@@ -121,14 +121,14 @@
 
 .iconEdit,
 .iconDelete {
-  width: 16px; 
+  width: 16px;
   height: 16px;
-  fill: currentColor; 
+  fill: currentColor;
 }
 
-.recentProducts th{
+.recentProducts th {
   background: none;
 }
-.recentProducts table{
+.recentProducts table {
   box-shadow: none;
 }
