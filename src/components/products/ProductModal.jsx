@@ -6,6 +6,7 @@ import {
   fetchProducts,
 } from "../../redux/products/productsOperations.js";
 import CustomSelect from "./CustomSelect.jsx";
+import styles from "./prodModal.module.css";
 
 const ProductModal = ({ product, onClose }) => {
   const dispatch = useDispatch();
@@ -58,16 +59,16 @@ const ProductModal = ({ product, onClose }) => {
   };
 
   return (
-    <div >
-      <div >
-        <button  onClick={onClose}>
-          <svg >
+    <div className={styles.modalOverlay}>
+      <div className={styles.modal}>
+        <button className={styles.closeButton} onClick={onClose}>
+          <svg className={styles.iconx}>
             <use href="/sprite.svg#icon-x"></use>
           </svg>
         </button>
         <h2>{product ? "Edit Product" : "Add a new product"}</h2>
-        <form >
-          <div >
+        <form className={styles.form}>
+          <div className={styles.leftColumn}>
             <input
               type="text"
               name="name"
@@ -75,7 +76,7 @@ const ProductModal = ({ product, onClose }) => {
               value={formData.name}
               onChange={handleChange}
               required
-             
+              className={styles.inputtext}
             />
             <input
               type="number"
@@ -94,7 +95,7 @@ const ProductModal = ({ product, onClose }) => {
               required
             />
           </div>
-          <div >
+          <div className={styles.rightColumn}>
             <CustomSelect
               options={categories}
               selected={formData.category}
@@ -112,8 +113,8 @@ const ProductModal = ({ product, onClose }) => {
             />
           </div>
         </form>
-        <div >
-          <button  onClick={handleSubmit}>
+        <div className={styles.buttonContainer}>
+          <button className={styles.primaryButton} onClick={handleSubmit}>
             {product ? "Save" : "Add"}
           </button>
           <button type="button" onClick={onClose}>
