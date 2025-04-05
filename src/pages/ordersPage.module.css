@@ -1,8 +1,6 @@
 /* Общий контейнер */
 .ordersPage {
-  margin-top: 155px;
-  margin-left: 120px;
-  margin-right: 40px;
+    margin: 100px 40px 40px 120px;
 }
 
 /* Заголовок */
@@ -239,4 +237,18 @@
   height: 11.88px;
   border-radius: 50%;
   background-color: rgba(231, 241, 237, 1);
+}
+
+@media (max-width: 768px) {
+  .ordersPage {
+    margin: 100px 40px 40px 32px;
+  }
+  .grid {
+    flex-direction: column;
+  }
+}
+@media (max-width: 375px) {
+  .ordersPage {
+    margin: 100px 20px 40px 20px;
+  }
 }

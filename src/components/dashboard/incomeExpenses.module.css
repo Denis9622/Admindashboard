@@ -1,43 +1,42 @@
 .containerExpenses {
-  width: 630px;
+  width: 335px;
 }
 
 .containerExpenses h3 {
   background-color: #e7f1ed;
-  padding: 20px;
+  padding: 14px;
   color: #1d1e21;
   font-weight: 600;
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 20px;
   border-radius: 8px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
-  
 }
-.today{
+
+.today {
   font-size: 14px;
   color: #1d1e2166;
   font-weight: 600;
-  padding-bottom: 20px;
+  padding-bottom: 14px;
   border-bottom: 1px solid rgba(29, 30, 33, 0.1);
-
 }
 
 .incomeExpenses {
-  padding: 20px 20px 0 20px;
+  padding: 14px 14px 0 14px;
   background: white;
   border-radius: 8px;
   border: 1px solid rgba(29, 30, 33, 0.1);
   border-top: none;
-    text-align: left;
-
+  text-align: left;
+  border-top-right-radius: 0;
+  border-top-left-radius: 0;
 }
 
 .transaction {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* padding: 12px 0; */
   border-bottom: 1px solid rgba(29, 30, 33, 0.1);
 }
 
@@ -47,26 +46,32 @@
 
 .transactionName {
   flex-grow: 1;
-  margin-left: 40px;
+  margin-left: 28px;
   color: #1d1e21;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 14px;
+  line-height: 18px;
 }
 
 .transactionAmount {
-  font-weight: bold;
-  font-size: 16px;
-}
-
-.income, .expense {
-  margin: 20px 0;
-  display: inline-block;
-  min-width: 100px;
-  padding: 4px 13.5px;
-  border-radius: 40px;
   font-weight: 500;
   font-size: 14px;
-  line-height: 100%;
+  line-height: 18px;
+  letter-spacing: 0%;
+}
+
+.income,
+.expense {
+  margin: 14px 0;
+  display: inline-block;
+  min-width: 80px;
+  padding: 4px;
+  border-radius: 40px;
+  font-family: Inter;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0%;
   text-align: center;
 }
 
@@ -84,6 +89,54 @@
   text-align: center;
   color: #1d1e2166;
   font-size: 14px;
-  /* padding: 10px 0; */
 }
 
+/* Tablet */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .containerExpenses {
+    width: 704px;
+  }
+  .containerExpenses h3 {
+    padding: 20px;
+    font-size: 18px;
+    line-height: 24px;
+  }
+  .today {
+    padding-bottom: 20px;
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  .incomeExpenses {
+    padding: 20px 20px 0 20px;
+  }
+
+  .transactionName {
+    margin-left: 40px;
+    font-size: 16px;
+    line-height: 18px;
+  }
+
+  .transactionAmount {
+    font-size: 16px;
+  }
+
+  .income,
+  .expense {
+    margin: 20px 0;
+    font-size: 16px;
+  }
+}
+
+/* Laptop and Desktop */
+@media screen and (min-width: 1024px) {
+  .containerExpenses {
+    width: 630px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .containerExpenses {
+    width: 630px;
+  }
+}

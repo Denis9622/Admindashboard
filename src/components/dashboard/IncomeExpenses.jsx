@@ -52,7 +52,7 @@ const IncomeExpenses = () => {
                   color: transaction.type === "Income" ? "green" : "red",
                 }}
               >
-                {transaction.type === "Income" ? "+" : "-"}$
+                {transaction.type === "Income" ? "+" : "-"}
                 {Math.abs(transaction.amount || 0).toFixed(2)}
               </span>
             </div>

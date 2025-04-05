@@ -1,24 +1,26 @@
+* {
+  box-sizing: border-box;
+}
 .containerCustomers {
-    width: 630px; 
-    padding-left: 80px;
-
+  width: 335px;
+  /* padding-left: 80px; */
 }
 
 .containerCustomers h3 {
   background-color: #e7f1ed;
-  padding: 20px;
+  padding: 14px;
   margin: 0;
   color: #1d1e21;
   font-weight: 600;
-  font-size: 18px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 20px;
   border-radius: 8px;
   border-bottom-right-radius: 0;
   border-bottom-left-radius: 0;
 }
 
 .recentCustomers {
-  padding: 0 20px;
+  padding: 0 14px;
   background: white;
   border-radius: 8px;
   /* box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); */
@@ -35,11 +37,11 @@
 }
 
 .recentCustomers th {
-  padding: 20px;
+  padding: 14px;
   color: #1d1e2166;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 18px;
+  font-size: 12px;
+  line-height: 14px;
   text-align: left;
   /* border-left: none;
     border-right: none; */
@@ -50,12 +52,12 @@
 }
 
 .recentCustomers td {
-  padding: 30px 20px;
+  padding: 30px 10px;
 
   color: #1d1e21;
   font-weight: 500;
-  font-size: 16px;
-  line-height: 18px;
+  font-size: 12px;
+  line-height: 14px;
   text-align: left;
   /* border-left: none; */
 }
@@ -89,9 +91,52 @@
   border-right: none; /* Убираем правую границу */
 }
 
-.recentCustomers th{
+.recentCustomers th {
   background: none;
 }
-.recentCustomers table{
+.recentCustomers table {
   box-shadow: none;
+}
+.scrollWrapper {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* Для плавного скролла на iOS */
+}
+
+/* Tablet */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .containerCustomers {
+    width: 704px;
+  }
+  .containerCustomers h3 {
+    font-size: 18px;
+    line-height: 24px;
+    padding: 20px;
+  }
+  .recentCustomers {
+    padding: 0 20px;
+  }
+  .recentCustomers th {
+    font-size: 14px;
+    line-height: 18px;
+    padding: 20px;
+  }
+  .recentCustomers td {
+    font-size: 16px;
+    line-height: 18px;
+    padding: 30px 20px;
+  }
+}
+
+/* Laptop and Desktop */
+@media screen and (min-width: 1024px) {
+  .containerCustomers {
+    width: 630px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .containerCustomers {
+    width: 630px;
+  }
 }

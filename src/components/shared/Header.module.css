@@ -1,43 +1,44 @@
 .header {
-  max-width: 1440px;
   display: flex;
-  top: 0;
-  width: 100%;
-  padding: 15px 40px 15px 20px;
+  /* width: 100%; */
+  /* padding: 15px 20px; */
   border-bottom: 1px solid rgba(29, 30, 33, 0.1);
   background-color: #f7f8fa;
   position: fixed;
   align-items: center;
-  flex-shrink: 0;
   z-index: 10;
+  top: 0;
+  left: 0;
+  right: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  justify-content: center;
 }
 
 .menuButton {
-  display: none;
+  display: block;
   background: none;
   border: none;
-  padding: 8px;
   cursor: pointer;
-  margin-right: 10px;
+  margin-right: 20px;
 }
 
 .menuIcon {
-  width: 24px;
-  height: 24px;
-  fill: #1d1e21;
+  width: 32px;
+  height: 32px;
 }
 
 .logoImg {
-  margin-right: 60px;
-  width: 44px;
-  height: 44px;
+  margin-right: 20px;
+  width: 32px;
+  height: 32px;
 }
 
 .logotxt {
   color: #1d1e21;
   font-weight: 600;
-  font-size: 24px;
-  line-height: 28px;
+  font-size: 20px;
+  line-height: 24px;
   letter-spacing: 0em;
 }
 
@@ -95,27 +96,87 @@
 }
 
 .logoutUserButton:hover {
-  background-color: rgba(63, 148, 95, 1); /* Задаем цвет фона при наведении */
+  background-color: rgba(63, 148, 95, 1);
 }
 
 .logoutUserButton:active {
   background-color: rgba(63, 148, 95, 1);
 }
 
-@media (max-width: 768px) {
-  .menuButton {
-    display: block;
-  }
-
-  /* .nav {
-    display: none;
-  } */
-
+/* Медиа-запросы для адаптивной верстки */
+@media (min-width: 375px) {
   .header {
     padding: 15px 20px;
   }
 
   .logoImg {
     margin-right: 20px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .logotxt {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .menuButton {
+    margin-right: 20px;
+  }
+
+  .menuIcon {
+    width: 32px;
+    height: 32px;
   }
 }
+
+@media (min-width: 768px) {
+  .menuButton {
+    display: none;
+  }
+
+  .logoImg {
+    margin-right: 32px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .header {
+    padding: 15px 32px;
+  }
+
+  .menuButton {
+    margin-right: 16px;
+  }
+}
+@media (min-width: 1024px) {
+  .header {
+    width: 1024px;
+    padding: 15px 40px 15px 20px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .header {
+    width: 1440px;
+    padding: 15px 40px 15px 20px;
+  }
+
+  .logoImg {
+    margin-right: 60px;
+    width: 44px;
+    height: 44px;
+  }
+
+  .logotxt {
+    font-size: 24px;
+    line-height: 28px;
+  }
+}
+
+/* @media (max-width: 320px) {
+    .header {
+    padding: 17px 20px;
+  }
+
+} */

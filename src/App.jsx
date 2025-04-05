@@ -37,88 +37,93 @@ export default function App() {
   }, [dispatch]);
 
   return (
-    <div className={css.app}>
-      <Suspense fallback={<Loader loader={true} />}>
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <PrivateRoute
-                redirectTo="/login"
-                component={<SharedLayout isAuthenticated={isAuthenticated} />}
+    <div className={css.appcentr}>
+      <div className={css.app}>
+        <Suspense fallback={<Loader loader={true} />}>
+          <Routes>
+            <Route
+              path="/"
+              element={
+                <PrivateRoute
+                  redirectTo="/login"
+                  component={<SharedLayout isAuthenticated={isAuthenticated} />}
+                />
+              }
+            >
+              <Route
+                index
+                element={<PrivateRoute component={<DashboardPage />} />}
               />
-            }
-          >
-            <Route
-              index
-              element={<PrivateRoute component={<DashboardPage />} />}
-            />
-            <Route
-              path="/dashboard"
-              element={
-                <PrivateRoute
-                  redirectTo="/login"
-                  component={<DashboardPage />}
-                />
-              }
-            />
-            <Route
-              path="/orders"
-              element={
-                <PrivateRoute redirectTo="/login" component={<OrdersPage />} />
-              }
-            />
-            <Route
-              path="/products"
-              element={
-                <PrivateRoute
-                  redirectTo="/login"
-                  component={<ProductsPage />}
-                />
-              }
-            />
-            <Route
-              path="/customers"
-              element={
-                <PrivateRoute
-                  redirectTo="/login"
-                  component={<CustomersPage />}
-                />
-              }
-            />
-            <Route
-              path="/suppliers"
-              element={
-                <PrivateRoute
-                  redirectTo="/login"
-                  component={<SuppliersPage />}
-                />
-              }
-            />
-          </Route>
-          {/* Авторизация */}
-          <Route
-            path="/login"
-            element={
-              <RestrictedRoute
-                redirectTo="/dashboard"
-                component={<LoginPage />}
+              <Route
+                path="/dashboard"
+                element={
+                  <PrivateRoute
+                    redirectTo="/login"
+                    component={<DashboardPage />}
+                  />
+                }
               />
-            }
-          />
-          <Route
-            path="/signup"
-            element={
-              <RestrictedRoute
-                redirectTo="/dashboard"
-                component={<SignupPage />}
+              <Route
+                path="/orders"
+                element={
+                  <PrivateRoute
+                    redirectTo="/login"
+                    component={<OrdersPage />}
+                  />
+                }
               />
-            }
-          />
+              <Route
+                path="/products"
+                element={
+                  <PrivateRoute
+                    redirectTo="/login"
+                    component={<ProductsPage />}
+                  />
+                }
+              />
+              <Route
+                path="/customers"
+                element={
+                  <PrivateRoute
+                    redirectTo="/login"
+                    component={<CustomersPage />}
+                  />
+                }
+              />
+              <Route
+                path="/suppliers"
+                element={
+                  <PrivateRoute
+                    redirectTo="/login"
+                    component={<SuppliersPage />}
+                  />
+                }
+              />
+            </Route>
+            {/* Авторизация */}
+            <Route
+              path="/login"
+              element={
+                <RestrictedRoute
+                  redirectTo="/dashboard"
+                  component={<LoginPage />}
+                />
+              }
+            />
+            <Route
+              path="/signup"
+              element={
+                <RestrictedRoute
+                  redirectTo="/dashboard"
+                  component={<SignupPage />}
+                />
+              }
+            />
 
-          <Route path="*" element={<NotFoundPage />} />
-        </Routes>
-      </Suspense>
+            <Route path="*" element={<NotFoundPage />} />
+          </Routes>
+        </Suspense>
+      </div>
     </div>
   );
 }

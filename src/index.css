@@ -1,0 +1,43 @@
+:root {
+  max-width: 375px;
+  margin: 0 auto;
+  position: relative;
+}
+
+#root {
+  max-width: 375px;
+  margin: 0 auto;
+  position: relative;
+}
+
+/* Mobile */
+@media screen and (min-width: 375px) {
+  :root,
+  #root {
+    max-width: 375px;
+  }
+}
+
+/* Tablet */
+@media screen and (min-width: 768px) {
+  :root,
+  #root {
+    max-width: 768px;
+  }
+}
+
+/* Laptop */
+@media screen and (min-width: 1024px) {
+  :root,
+  #root {
+    max-width: 1024px;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1440px) {
+  :root,
+  #root {
+    max-width: 1440px;
+  }
+}

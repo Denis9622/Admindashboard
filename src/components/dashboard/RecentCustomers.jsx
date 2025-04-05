@@ -13,8 +13,7 @@ const RecentCustomers = () => {
     dispatch(fetchCustomersWithSpent());
   }, [dispatch]);
 
-  useEffect(() => {
-  }, [recentCustomers]);
+  useEffect(() => {}, [recentCustomers]);
 
   if (loading) return <p>Loading customers...</p>;
   if (error) return <p className={styles.error}>{error}</p>;
@@ -37,7 +36,6 @@ const RecentCustomers = () => {
                 <td>{customer.name}</td>
                 <td>{customer.email}</td>
                 <td>
-                  $
                   {customer.totalSpent
                     ? customer.totalSpent.toFixed(2)
                     : "0.00"}

@@ -1,6 +1,7 @@
 .sidebar {
   background-color: #f7f8fa;
-  height: 100vh; /* Высота на всю страницу */
+  height: calc(100vh - 80px); /* Высота минус высота хедера */
+  width: 80px;
 
   display: flex;
   flex-direction: column;
@@ -14,11 +15,29 @@
   border-left: 0px solid rgba(29, 30, 33, 0.1);
 
   position: fixed;
-  top: 81px;
-  align-items: center;
-  flex-shrink: 0;
+  top: 80px;
+  left: 50%;
+  transform: translateX(calc(-50% - 147.5px));
   z-index: 10;
   transition: transform 0.3s ease;
+}
+
+@media (min-width: 768px) {
+  .sidebar {
+    transform: translateX(calc(-50% - 344px));
+  }
+}
+
+@media (min-width: 1024px) {
+  .sidebar {
+    transform: translateX(calc(-50% - 472px));
+  }
+}
+
+@media (min-width: 1440px) {
+  .sidebar {
+    transform: translateX(calc(-50% - 680px));
+  }
 }
 
 /* .menu {
@@ -60,11 +79,8 @@
 
 @media (max-width: 768px) {
   .sidebar {
+    left: 0;
     transform: translateX(-100%);
-    background-color: #fff;
-    width: 250px;
-    padding: 20px;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
   }
 
   .sidebar.open {

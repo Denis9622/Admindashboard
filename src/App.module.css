@@ -14,8 +14,6 @@ img {
   display: block;
   max-width: 100%;
   height: auto;
-  margin: 0;
-  padding: 0;
 }
 
 h1,
@@ -26,24 +24,16 @@ h5,
 h6,
 p {
   margin: 0;
-  padding: 0;
 }
 
 html {
   scroll-behavior: smooth;
-  /* background-color: #f7f8fa; */
-}
-
-p:last-child {
-  margin-bottom: 0;
 }
 
 a {
   cursor: pointer;
   color: currentColor;
   text-decoration: none;
-  margin: 0;
-  padding: 0;
 }
 
 a:hover {
@@ -51,73 +41,43 @@ a:hover {
 }
 
 ul {
-  margin: 0;
-  padding: 0;
   list-style: none;
-}
-
-li,
-p {
-  margin: 0;
-  padding: 0;
-}
-
-.link {
-  color: black;
-  text-decoration: none;
-}
-
-.link:hover {
-  color: #7a272f;
 }
 
 button {
   cursor: pointer;
 }
-span {
-  margin: 0;
-  padding: 0;
-}
-
-/* Reset styles */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 body {
-  font-family: 'Inter', sans-serif;
-  background-color: #F7F8FA;
-  /* color: #333; */
-  /* line-height: 1.6; */
+  font-family: "Inter", sans-serif;
+  background-color: #f7f8fa;
 }
 
-/* Основные стили */
 .app {
-  /* width: 100%; */
-  max-width: 1440px;
-  margin: 0 auto;
-  /* padding: 0 20px; */
+  padding: 100px 20px 40px 20px;
+  
 }
 
-/* @media (min-width: 320px) {
+/* Tablet */
+@media screen and (min-width: 768px) {
   .app {
+    max-width: 768px;
+    padding: 100px 32px 40px 32px;
   }
 }
 
-@media (min-width: 375px) {
+/* Laptop */
+@media screen and (min-width: 1024px) {
   .app {
+    max-width: 1024px;
+    padding: 100px 40px 40px 120px;
   }
 }
 
-@media (min-width: 768px) {
+/* Desktop */
+@media screen and (min-width: 1440px) {
   .app {
+    max-width: 1440px;
+    padding: 100px 40px 40px 120px;
   }
 }
-
-@media (min-width: 1440px) {
-  .app {
-  }
-} */
-

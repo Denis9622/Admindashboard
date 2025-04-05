@@ -1,17 +1,26 @@
 .dashboard {
   
-  /* margin-top: 100px;
-  margin-left: 120px; */
-  /* padding-right: 40px; */
-  margin: 100px 40px 40px 40px;
-
-
-
+  /* padding: 100px 40px 40px 120px; */
 }
 
 .grid {
   display: flex;
   gap: 20px;
+}
 
-
+@media (max-width: 768px) {
+  /* .dashboard {
+    padding: 100px 40px 40px 32px;
+  } */
+  .grid {
+    flex-direction: column;
+  }
+}
+@media (max-width: 375px) {
+  /* .dashboard {
+    padding: 100px 20px 40px 20px;
+  } */
+    .grid {
+    flex-direction: column;
+  }
 }
