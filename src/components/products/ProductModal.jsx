@@ -12,7 +12,7 @@ const ProductModal = ({ product, onClose }) => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
     name: product ? product.name : "",
-    category: product ? product.category : "", // Устанавливаем значение по умолчанию как пустую строку
+    category: product ? product.category : "",
     stock: product ? product.stock : "",
     suppliers: product ? product.suppliers.join(", ") : "",
     price: product ? product.price : "",
@@ -20,7 +20,6 @@ const ProductModal = ({ product, onClose }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
-    // Загрузка категорий (пример)
     setCategories([
       "Medicine",
       "Head",
@@ -52,7 +51,7 @@ const ProductModal = ({ product, onClose }) => {
       } else {
         await dispatch(addProduct(updatedProduct)).unwrap();
       }
-      await dispatch(fetchProducts()); // Обновляем список продуктов после изменения
+      await dispatch(fetchProducts());
       onClose();
     } catch (error) {
       console.error("Ошибка обновления продукта:", error);
