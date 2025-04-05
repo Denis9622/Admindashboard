@@ -16,28 +16,14 @@
 
   position: fixed;
   top: 80px;
-  left: 50%;
-  transform: translateX(calc(-50% - 147.5px));
+  left: 0;
+  transform: translateX(-100%);
   z-index: 10;
   transition: transform 0.3s ease;
 }
 
-@media (min-width: 768px) {
-  .sidebar {
-    transform: translateX(calc(-50% - 344px));
-  }
-}
-
-@media (min-width: 1024px) {
-  .sidebar {
-    transform: translateX(calc(-50% - 472px));
-  }
-}
-
-@media (min-width: 1440px) {
-  .sidebar {
-    transform: translateX(calc(-50% - 680px));
-  }
+.sidebar.open {
+  transform: translateX(0);
 }
 
 /* .menu {
@@ -77,7 +63,8 @@
   fill: #2c8f4b; /* Зеленый цвет активной иконки */
 }
 
-@media (max-width: 768px) {
+/* Mobile */
+@media screen and (min-width: 375px) {
   .sidebar {
     left: 0;
     transform: translateX(-100%);
@@ -85,5 +72,27 @@
 
   .sidebar.open {
     transform: translateX(0);
+  }
+}
+
+/* Tablet */
+@media screen and (min-width: 768px) {
+  .sidebar {
+    left: 50%;
+    transform: translateX(calc(-50% - 344px));
+  }
+}
+
+/* Laptop */
+@media screen and (min-width: 1024px) {
+  .sidebar {
+    transform: translateX(calc(-50% - 472px));
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1440px) {
+  .sidebar {
+    transform: translateX(calc(-50% - 680px));
   }
 }

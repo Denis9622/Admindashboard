@@ -55,14 +55,20 @@ body {
 
 .app {
   padding: 100px 20px 40px 20px;
-  
+}
+
+/* Mobile */
+@media screen and (min-width: 375px) {
+  .app {
+    padding: 100px 20px 40px 20px;
+  }
 }
 
 /* Tablet */
 @media screen and (min-width: 768px) {
   .app {
     max-width: 768px;
-    padding: 100px 32px 40px 32px;
+    padding: 100px 32px 40px 120px;
   }
 }
 

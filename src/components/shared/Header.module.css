@@ -1,7 +1,6 @@
 .header {
+  width: 100%;
   display: flex;
-  /* width: 100%; */
-  /* padding: 15px 20px; */
   border-bottom: 1px solid rgba(29, 30, 33, 0.1);
   background-color: #f7f8fa;
   position: fixed;
@@ -13,6 +12,7 @@
   left: 50%;
   transform: translateX(-50%);
   justify-content: center;
+  padding: 15px 20px;
 }
 
 .menuButton {
@@ -103,9 +103,10 @@
   background-color: rgba(63, 148, 95, 1);
 }
 
-/* Медиа-запросы для адаптивной верстки */
-@media (min-width: 375px) {
+/* Mobile */
+@media screen and (min-width: 375px) {
   .header {
+    width: 375px;
     padding: 15px 20px;
   }
 
@@ -130,7 +131,8 @@
   }
 }
 
-@media (min-width: 768px) {
+/* Tablet */
+@media screen and (min-width: 768px) {
   .menuButton {
     display: none;
   }
@@ -142,6 +144,7 @@
   }
 
   .header {
+    width: 768px;
     padding: 15px 32px;
   }
 
@@ -149,14 +152,17 @@
     margin-right: 16px;
   }
 }
-@media (min-width: 1024px) {
+
+/* Laptop */
+@media screen and (min-width: 1024px) {
   .header {
     width: 1024px;
     padding: 15px 40px 15px 20px;
   }
 }
 
-@media (min-width: 1440px) {
+/* Desktop */
+@media screen and (min-width: 1440px) {
   .header {
     width: 1440px;
     padding: 15px 40px 15px 20px;

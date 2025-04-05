@@ -1,26 +1,37 @@
 .dashboard {
-  
   /* padding: 100px 40px 40px 120px; */
 }
 
 .grid {
   display: flex;
   gap: 20px;
+  flex-direction: column;
 }
 
-@media (max-width: 768px) {
-  /* .dashboard {
-    padding: 100px 40px 40px 32px;
-  } */
+/* Mobile */
+@media screen and (min-width: 375px) {
   .grid {
     flex-direction: column;
   }
 }
-@media (max-width: 375px) {
-  /* .dashboard {
-    padding: 100px 20px 40px 20px;
-  } */
-    .grid {
+
+/* Tablet */
+@media screen and (min-width: 768px) {
+  .grid {
     flex-direction: column;
+  }
+}
+
+/* Laptop */
+@media screen and (min-width: 1024px) {
+  .grid {
+    flex-direction: row;
+  }
+}
+
+/* Desktop */
+@media screen and (min-width: 1440px) {
+  .grid {
+    flex-direction: row;
   }
 }
