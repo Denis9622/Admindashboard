@@ -6,7 +6,7 @@ import {
   fetchProducts,
 } from "../../redux/products/productsOperations.js";
 import CustomSelect from "./CustomSelect.jsx";
-import styles from "./ProductModal.module.css";
+import styles from "./productModal.module.css";
 
 const ProductModal = ({ product, onClose }) => {
   const dispatch = useDispatch();
