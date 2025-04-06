@@ -1,43 +1,39 @@
 .sidebar {
   background-color: #f7f8fa;
-  height: calc(100vh - 80px); /* Высота минус высота хедера */
-  width: 80px;
-
+  width: 78px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 40px 18px;
-
-  /* border-top: 1px solid rgba(29, 30, 33, 0.1); */
-
   border-right: 1px solid rgba(29, 30, 33, 0.1);
   border-bottom: 0px solid rgba(29, 30, 33, 0.1);
   border-left: 0px solid rgba(29, 30, 33, 0.1);
-
   position: fixed;
-  top: 80px;
+  top: 0;
+  height: 100vh;
   left: 0;
   transform: translateX(-100%);
   z-index: 10;
   transition: transform 0.3s ease;
+  display: none;
+  display: relative;
 }
 
 .sidebar.open {
   transform: translateX(0);
+  display: flex;
 }
 
-/* .menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-} */
+.menu {
+  position: absolute;
+  top: 92px;
+}
 
 .menuItem {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 44px;
-  height: 44px;
+  width: 38px;
+  height: 38px;
   border-radius: 50%;
   background-color: #fff; /* Белый фон кнопки */
   margin: 14px 0;
@@ -48,8 +44,8 @@
 
 .icon {
   fill: rgba(220, 221, 223, 1);
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   transition: color 0.3s ease;
 }
 
@@ -62,8 +58,35 @@
 .menuItem:hover .icon {
   fill: #2c8f4b; /* Зеленый цвет активной иконки */
 }
+.closeButton {
+  position: absolute;
+  top: 20px;
+  left: 32px;
+  right: 14px;
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
-/* Mobile */
+.closeIcon {
+  width: 32px;
+  height: 32px;
+  fill: none;
+  stroke: #1d1e21;
+  transition: fill 0.3s ease;
+}
+
+.closeButton:hover .closeIcon {
+  fill: #2c8f4b;
+}
+
+/* Mobile и Tablet (до 1024px) */
 @media screen and (min-width: 375px) {
   .sidebar {
     left: 0;
@@ -73,26 +96,108 @@
   .sidebar.open {
     transform: translateX(0);
   }
+
+  .menu {
+    top: 92px;
+  }
 }
 
 /* Tablet */
 @media screen and (min-width: 768px) {
   .sidebar {
+    width: 84px;
     left: 50%;
+    transform: translateX(calc(-50% - 344px - 100%));
+  }
+
+  .sidebar.open {
     transform: translateX(calc(-50% - 344px));
+  }
+  .menuItem {
+    width: 44px;
+    height: 44px;
+  }
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+  .menu {
+    top: 100px;
+  }
+  .closeButton {
+    left: 38px;
+    right: 22px;
   }
 }
 
-/* Laptop */
+@media screen and (max-width: 1023px) {
+  .sidebar {
+    display: none;
+    height: 100vh;
+  }
+
+  .sidebar.open {
+    display: flex;
+    left: 0;
+    transform: translateX(0);
+  }
+}
+
+/* Laptop и больше */
 @media screen and (min-width: 1024px) {
   .sidebar {
+    width: 80px;
+    height: 100vh;
+    display: flex;
+    left: 50%;
     transform: translateX(calc(-50% - 472px));
+    height: calc(100vh - 80px); /* Высота минус высота хедера */
+    top: 80px;
+  }
+
+  .menu {
+    position: relative;
+    top: 0;
+  }
+
+  .menuItem {
+    width: 44px;
+    height: 44px;
+  }
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+  .closeIcon {
+    display: none;
   }
 }
 
 /* Desktop */
 @media screen and (min-width: 1440px) {
   .sidebar {
+    width: 80px;
+    height: 100vh;
+    left: 50%;
     transform: translateX(calc(-50% - 680px));
+    height: calc(100vh - 80px); /* Высота минус высота хедера */
+    top: 80px;
+  }
+
+  .menu {
+    position: relative;
+    top: 0;
+  }
+
+  .menuItem {
+    width: 44px;
+    height: 44px;
+  }
+  .icon {
+    width: 16px;
+    height: 16px;
+  }
+  .closeIcon {
+    display: none;
   }
 }

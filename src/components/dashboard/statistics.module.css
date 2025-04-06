@@ -54,6 +54,7 @@
   .statistics {
     display: flex;
     flex-wrap: wrap;
+    gap: 20px;
   }
   .card {
     width: 157px;
@@ -76,8 +77,10 @@
 /* Tablet */
 @media screen and (min-width: 768px) {
   .statistics {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
     margin-bottom: 40px;
-    flex-direction: row;
   }
   .card {
     width: 221px;
@@ -100,6 +103,9 @@
 /* Laptop */
 @media screen and (min-width: 1024px) {
   .statistics {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
     margin-bottom: 40px;
   }
   .card {
@@ -123,6 +129,9 @@
 /* Desktop */
 @media screen and (min-width: 1440px) {
   .statistics {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 20px;
     margin-bottom: 40px;
   }
   .card {

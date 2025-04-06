@@ -10,11 +10,10 @@ export const registerUser = createAsyncThunk(
       const response = await api.post("/auth/register", userData);
       const { id, name, email, accessToken } = response.data.data;
 
-      // Сохраняем токены и данные пользователя
+      // Сохраняем только access token и данные пользователя
       localStorage.setItem("user", JSON.stringify({ id, name, email }));
       localStorage.setItem("token", accessToken);
-
-      setAuthHeader(accessToken); // Устанавливаем токен в заголовки
+      setAuthHeader(accessToken);
 
       return { id, name, email, accessToken };
     } catch (error) {
@@ -33,16 +32,14 @@ export const loginUser = createAsyncThunk(
   async (credentials, { rejectWithValue }) => {
     try {
       const response = await api.post("/auth/login", credentials);
-      const { user, accessToken, refreshToken } = response.data.data;
+      const { user, accessToken } = response.data.data;
 
-      // Сохраняем токены и данные пользователя
+      // Сохраняем только access token и данные пользователя
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", accessToken);
-      localStorage.setItem("refreshToken", refreshToken);
+      setAuthHeader(accessToken);
 
-      setAuthHeader(accessToken); // Устанавливаем токен в заголовки
-
-      return { user, accessToken, refreshToken };
+      return { user, accessToken };
     } catch (error) {
       console.error("Ошибка входа:", error.response?.data || error.message);
       return rejectWithValue(error.response?.data || "Ошибка входа");
@@ -55,33 +52,20 @@ export const logoutUser = createAsyncThunk(
   "auth/logout",
   async (_, { rejectWithValue }) => {
     try {
-      const refreshToken = localStorage.getItem("refreshToken");
-
-      // Отправляем запрос на сервер для удаления токена
-      const response = await api.post(
-        "/auth/logout",
-        {},
-        refreshToken
-          ? { headers: { Authorization: `Bearer ${refreshToken}` } }
-          : {}
-      );
+      await api.post("/auth/logout");
 
       // Очищаем локальные данные
       localStorage.removeItem("token");
-      localStorage.removeItem("refreshToken");
       localStorage.removeItem("user");
-      sessionStorage.clear();
+      setAuthHeader(null);
 
-      return response.data;
+      return null;
     } catch (error) {
-      if (error.response?.data?.message === "Invalid refresh token") {
-        // Очищаем локальные данные при недействительном refresh token
-        localStorage.removeItem("token");
-        localStorage.removeItem("refreshToken");
-        localStorage.removeItem("user");
-        sessionStorage.clear();
-      }
       console.error("Ошибка выхода:", error.response?.data || error.message);
+      // Даже при ошибке очищаем данные
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      setAuthHeader(null);
       return rejectWithValue(error.response?.data || "Ошибка выхода");
     }
   }
@@ -92,22 +76,17 @@ export const refreshToken = createAsyncThunk(
   "auth/refreshToken",
   async (_, { rejectWithValue }) => {
     try {
-      const refreshToken = localStorage.getItem("refreshToken");
-      const response = await api.post(
-        "/auth/refresh",
-        {},
-        refreshToken
-          ? { headers: { Authorization: `Bearer ${refreshToken}` } }
-          : {}
-      );
-      const newAccessToken = response.data.accessToken;
+      const response = await api.post("/auth/refresh");
+      const { accessToken } = response.data;
 
-      localStorage.setItem("token", newAccessToken);
-      setAuthHeader(newAccessToken); // Устанавливаем новый accessToken
+      localStorage.setItem("token", accessToken);
+      setAuthHeader(accessToken);
 
-      return newAccessToken;
+      return { accessToken };
     } catch (error) {
       localStorage.removeItem("token");
+      localStorage.removeItem("user");
+      setAuthHeader(null);
       return rejectWithValue("Не удалось обновить токен. Авторизуйтесь снова.");
     }
   }

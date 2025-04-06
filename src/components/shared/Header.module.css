@@ -133,9 +133,9 @@
 
 /* Tablet */
 @media screen and (min-width: 768px) {
-  .menuButton {
+  /* .menuButton {
     display: none;
-  }
+  } */
 
   .logoImg {
     margin-right: 32px;
@@ -159,6 +159,9 @@
     width: 1024px;
     padding: 15px 40px 15px 20px;
   }
+  .menuButton {
+    display: none;
+  }
 }
 
 /* Desktop */
@@ -178,7 +181,11 @@
     font-size: 24px;
     line-height: 28px;
   }
+  .menuButton {
+    display: none;
+  }
 }
+
 
 /* @media (max-width: 320px) {
     .header {

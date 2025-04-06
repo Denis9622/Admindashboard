@@ -11,7 +11,7 @@ import dashboardReducer from "./dashboard/dashboardSlice";
 const authPersistConfig = {
   key: "auth",
   storage,
-  whitelist: ["token", "refreshToken"], // Храним токен и refreshToken
+  whitelist: ["user", "token"], // Храним только user и token
 };
 
 export const store = configureStore({

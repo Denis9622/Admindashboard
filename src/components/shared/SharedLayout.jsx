@@ -11,6 +11,10 @@ const SharedLayout = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
+  const closeSidebar = () => {
+    setIsSidebarOpen(false);
+  };
+
   return (
     <div className={css.layout}>
       <header className={css.header}>
@@ -18,7 +22,7 @@ const SharedLayout = () => {
       </header>
       <div className={css.content}>
         <aside className={css.sidebar}>
-          <Sidebar isOpen={isSidebarOpen} />
+          <Sidebar isOpen={isSidebarOpen} onClose={closeSidebar} />
         </aside>
         <main className={css.main}>
           <Outlet />

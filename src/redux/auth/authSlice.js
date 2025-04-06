@@ -17,10 +17,9 @@ const loadFromStorage = (key) => {
 };
 
 const initialState = {
-  user: loadFromStorage("user"),
-  token: localStorage.getItem("token"),
-  refreshToken: localStorage.getItem("refreshToken"),
-  isAuthenticated: !!localStorage.getItem("token"),
+  user: null,
+  token: null,
+  isAuthenticated: false,
   isLoading: false,
   error: null,
 };
@@ -29,22 +28,15 @@ const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {
-    // ✅ Добавляем возможность обновлять пользователя вручную
     setUser: (state, action) => {
       state.user = action.payload;
-      localStorage.setItem("user", JSON.stringify(action.payload));
+      state.isAuthenticated = true;
     },
-    // ✅ Функция для сброса состояния при разлогине
     clearAuthState: (state) => {
       state.user = null;
       state.token = null;
-      state.refreshToken = null;
       state.isAuthenticated = false;
-      state.isLoading = false;
       state.error = null;
-      localStorage.removeItem("user");
-      localStorage.removeItem("token");
-      localStorage.removeItem("refreshToken");
     },
   },
   extraReducers: (builder) => {
@@ -57,11 +49,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload.user;
         state.token = action.payload.accessToken;
-        state.refreshToken = action.payload.refreshToken;
         state.isAuthenticated = true;
-        localStorage.setItem("user", JSON.stringify(action.payload.user));
-        localStorage.setItem("token", action.payload.accessToken);
-        localStorage.setItem("refreshToken", action.payload.refreshToken);
       })
       .addCase(registerUser.rejected, (state, action) => {
         state.isLoading = false;
@@ -75,11 +63,7 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload.user;
         state.token = action.payload.accessToken;
-        state.refreshToken = action.payload.refreshToken;
         state.isAuthenticated = true;
-        localStorage.setItem("user", JSON.stringify(action.payload.user));
-        localStorage.setItem("token", action.payload.accessToken);
-        localStorage.setItem("refreshToken", action.payload.refreshToken);
       })
       .addCase(loginUser.rejected, (state, action) => {
         state.isLoading = false;
@@ -88,11 +72,8 @@ const authSlice = createSlice({
       .addCase(logoutUser.fulfilled, (state) => {
         state.user = null;
         state.token = null;
-        state.refreshToken = null;
         state.isAuthenticated = false;
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
-        localStorage.removeItem("refreshToken");
+        state.error = null;
       })
       .addCase(refreshToken.pending, (state) => {
         state.isLoading = true;
@@ -101,16 +82,12 @@ const authSlice = createSlice({
       .addCase(refreshToken.fulfilled, (state, action) => {
         state.isLoading = false;
         state.token = action.payload.accessToken;
-        localStorage.setItem("token", action.payload.accessToken);
       })
       .addCase(refreshToken.rejected, (state) => {
         state.user = null;
         state.token = null;
-        state.refreshToken = null;
         state.isAuthenticated = false;
-        localStorage.removeItem("user");
-        localStorage.removeItem("token");
-        localStorage.removeItem("refreshToken");
+        state.error = null;
       });
   },
 });

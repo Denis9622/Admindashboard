@@ -1,9 +1,14 @@
 import { NavLink } from "react-router-dom";
 import styles from "./sidebar.module.css"; // Подключаем стили
 
-const Sidebar = ({ isOpen }) => {
+const Sidebar = ({ isOpen, onClose }) => {
   return (
     <nav className={`${styles.sidebar} ${isOpen ? styles.open : ""}`}>
+      <button className={styles.closeButton} onClick={onClose}>
+        <svg className={styles.closeIcon}>
+          <use href="/sprite.svg#icon-x"></use>
+        </svg>
+      </button>
       <ul className={styles.menu}>
         <li>
           <NavLink to="/dashboard" className={styles.menuItem}>
