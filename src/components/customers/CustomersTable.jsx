@@ -1,6 +1,10 @@
 import styles from "./customersTable.module.css";
 
-const CustomersTable = ({ customers, handleEditCustomer, handleDeleteCustomer }) => {
+const CustomersTable = ({
+  customers,
+  handleEditCustomer,
+  handleDeleteCustomer,
+}) => {
   return (
     <div className={styles.customersTable}>
       <h3>All Customers</h3>
@@ -36,7 +40,7 @@ const CustomersTable = ({ customers, handleEditCustomer, handleDeleteCustomer })
                         onClick={() => handleEditCustomer(customer)} // Edit customer
                       >
                         <svg className={styles.iconEdit}>
-                          <use href="/public/sprite.svg#icon-edit"></use>
+                          <use href="/sprite.svg#icon-edit"></use>
                         </svg>
                       </button>
                       <button
@@ -44,7 +48,7 @@ const CustomersTable = ({ customers, handleEditCustomer, handleDeleteCustomer })
                         onClick={() => handleDeleteCustomer(customer._id)} // Delete customer
                       >
                         <svg className={styles.iconDelete}>
-                          <use href="/public/sprite.svg#icon-delete"></use>
+                          <use href="/sprite.svg#icon-delete"></use>
                         </svg>
                       </button>
                     </div>

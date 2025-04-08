@@ -21,7 +21,7 @@ const Statistics = () => {
       <div className={styles.card}>
         <h3>
           <svg className={styles.icon}>
-            <use href="/public/sprite.svg#icon-coins"></use>
+            <use href="/sprite.svg#icon-coins"></use>
           </svg>
           All products
         </h3>

@@ -84,6 +84,9 @@ const ProductsPage = () => {
           className={styles.searchInput}
         />
         <button onClick={handleFilter} className={styles.filterButton}>
+          <svg className={styles.filterIcon}>
+            <use href="/sprite.svg#icon-filter"></use>
+          </svg>
           Filter
         </button>
         <button onClick={handleAddProduct} className={styles.addButton}>

@@ -74,6 +74,9 @@ const CustomersPage = () => {
           className={styles.filterInput}
         />
         <button className={styles.filterButton} onClick={handleFilter}>
+          <svg className={styles.filterIcon}>
+            <use href="/sprite.svg#icon-filter"></use>
+          </svg>
           Filter
         </button>
         <button

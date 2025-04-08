@@ -1,0 +1,233 @@
+@use '../styles/mixins' as *;
+
+.loginPage {
+  position: relative;
+
+  .backgroundImage {
+    position: absolute;
+    bottom: 0;
+  
+    top: 646px;
+    left: 97px;
+  
+    @include media($tablet) {
+      top: 741px;
+      left: 480px;
+    }
+    @include media($desktop) {
+      top: 523px;
+      left: 1061px;
+    }
+  }
+
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    background-color: #f7f8fa;
+    padding-bottom: 204px;
+    overflow: hidden; 
+
+
+    @include media($tablet) {
+      /* flex-direction: row; */
+      /* padding: 0 40px 150px 40px; */
+    }
+
+    @include media($desktop) {
+      flex-direction: row;
+    //   margin-left: 20px;
+    }
+  }
+
+  .leftSide {
+    width: 100%;
+    margin-right: 0;
+    text-align: left;
+
+    @include media($tablet) {
+      width: 614px;
+      /* margin-right: 150px; */
+      text-align: left;
+    }
+
+    @include media($desktop) {
+      width: 614px;
+      margin-right: 150px;
+      text-align: left;
+    }
+  }
+
+  .title {
+    margin-top: 196px;
+    font-weight: 600;
+    font-size: 28px;
+    line-height: 34px;
+    color:#1D1E21;
+    letter-spacing: 0;
+
+    @include media($tablet) {
+      margin-top: 252px;
+      font-size: 54px;
+      line-height: 60px;
+    }
+
+    @include media($desktop) {
+      margin-top: 278px;
+      font-size: 54px;
+      line-height: 60px;
+    }
+  }
+
+  .greenText {
+    color: #59B17A;
+    ;
+  }
+
+  .pillImage {
+    position: absolute;
+    top: 140px;
+    left: 220px;
+    width: 95px;
+    height: 93px;
+    /* margin: 40px auto; */
+
+    @include media($tablet) {
+      position: absolute;
+      top: 148px;
+      left: 428px;
+      width: 179px;
+      height: 175px;
+    }
+
+    @include media($desktop) {
+      position: absolute;
+      top: 174px;
+      left: 416px;
+    //   right: 725px;
+      width: 179px;
+      height: 175px;
+    }
+  }
+
+  .rightSide {
+    margin-top: 40px;
+    width: 100%;
+
+    @include media($tablet) {
+      margin-top: 50px;
+      margin-left: 12px;
+    }
+
+    @include media($desktop) {
+      margin-top: 226px;
+      width: 323px;
+    }
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 323px;
+    margin: 0 auto;
+
+    @include media($tablet) {
+      margin: 0;
+      max-width: 323px;
+    }
+  }
+
+  .passwordWrapper {
+    position: relative;
+    width: 100%;
+  }
+
+  .passwordToggleIcon {
+    position: absolute;
+    right: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+  }
+
+  .icon {
+    width: 20px;
+    height: 20px;
+    fill: rgba(29, 30, 33, 0.4);
+
+    &:hover {
+      fill: #59b17a;
+    }
+  }
+
+  .input {
+    width: 100%;
+    padding: 13px 18px;
+    color: rgba(29, 30, 33, 0.4);
+    border: 1px solid rgba(29, 30, 33, 0.1);
+    border-radius: 60px;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+
+    &:focus {
+      border: 1px solid rgba(89, 177, 122, 1);
+      outline: none;
+    }
+  }
+
+  .button {
+    font-family: inherit;
+    margin-top: 40px;
+    background-color: #59b17a;
+    color: white;
+    padding: 13px;
+    border: none;
+    border-radius: 60px;
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 18px;
+
+    &:hover {
+      background-color: #3f945f;
+    }
+  }
+
+  .signupLink {
+    color: rgba(29, 30, 33, 0.4);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 18px;
+    margin: 0 auto;
+  }
+
+  .logoContainer {
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 4px;
+    gap: 14px;
+font-weight: 600;
+font-size: 20px;
+line-height: 100%;
+letter-spacing: -3%;
+
+    @include media($tablet) {
+      top: 4px;
+    }
+    @include media($desktop) {
+    top: -72px;
+  }
+  }
+
+  .logoImg {
+    width: 44px;
+    height: auto;
+  }
+}
+

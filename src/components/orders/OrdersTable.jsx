@@ -47,7 +47,7 @@ const OrdersTable = ({ orders, handleEditOrder, handleDeleteOrder }) => {
                           onClick={() => handleEditOrder(order)} // Edit order
                         >
                           <svg className={styles.iconEdit}>
-                            <use href="/public/sprite.svg#icon-edit"></use>
+                            <use href="/sprite.svg#icon-edit"></use>
                           </svg>
                         </button>
                         <button
@@ -55,7 +55,7 @@ const OrdersTable = ({ orders, handleEditOrder, handleDeleteOrder }) => {
                           onClick={() => handleDeleteOrder(order._id)} // Delete order
                         >
                           <svg className={styles.iconDelete}>
-                            <use href="/public/sprite.svg#icon-delete"></use>
+                            <use href="/sprite.svg#icon-delete"></use>
                           </svg>
                         </button>
                       </div>

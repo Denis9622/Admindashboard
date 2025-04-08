@@ -50,7 +50,7 @@ const SuppliersTable = ({
                         onClick={() => handleEditSupplier(supplier)}
                       >
                         <svg className={styles.iconEdit}>
-                          <use href="/public/sprite.svg#icon-edit"></use>
+                          <use href="/sprite.svg#icon-edit"></use>
                         </svg>
                       </button>
                       <button
@@ -58,7 +58,7 @@ const SuppliersTable = ({
                         onClick={() => handleDeleteSupplier(supplier._id)}
                       >
                         <svg className={styles.iconDelete}>
-                          <use href="/public/sprite.svg#icon-delete"></use>
+                          <use href="/sprite.svg#icon-delete"></use>
                         </svg>
                       </button>
                     </div>

@@ -1,0 +1,34 @@
+@use '../styles/mixins' as *;
+
+.dashboard {
+margin: 80px 0 0 0;
+  @include media($laptop) {
+    margin: 0 0 0 20px;
+  }
+
+  @include media($desktop) {
+    margin: 0 0 0 20px;
+  }
+}
+
+.grid {
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
+
+  @include media($mobile) {
+    flex-direction: column;
+  }
+
+  @include media($tablet) {
+    flex-direction: column;
+  }
+
+  @include media($laptop) {
+    flex-direction: row;
+  }
+
+  @include media($desktop) {
+    flex-direction: row;
+  }
+}

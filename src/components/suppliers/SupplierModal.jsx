@@ -88,14 +88,19 @@ const SupplierModal = ({ supplier, onClose }) => {
               }
               required
             />
-            <input
-              type="datetime-local"
-              value={formData.deliveryDate}
-              onChange={(e) =>
-                setFormData({ ...formData, deliveryDate: e.target.value })
-              }
-              required
-            />
+            <div className={styles.dateInputContainer}>
+              <input
+                type="datetime-local"
+                value={formData.deliveryDate}
+                onChange={(e) =>
+                  setFormData({ ...formData, deliveryDate: e.target.value })
+                }
+                required
+              />
+              <svg className={styles.calendarIcon}>
+                <use href="/public/sprite.svg#icon-calendar-small"></use>
+              </svg>
+            </div>
             <select
               value={formData.status}
               onChange={(e) =>

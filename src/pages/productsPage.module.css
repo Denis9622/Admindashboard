@@ -1,7 +1,7 @@
 .productsPage {
   margin-top: 155px;
-  margin-left: 120px;
-  margin-right: 40px;
+  /* margin-left: 120px; */
+  /* margin-right: 40px; */
 }
 .filterContainer {
   display: flex;
@@ -33,6 +33,13 @@
   border: none;
   border-radius: 60px;
   cursor: pointer;
+}
+
+.filterIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  fill: white;
 }
 
 .addButton {

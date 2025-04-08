@@ -1,6 +1,6 @@
 /* Общий контейнер */
 .ordersPage {
-    margin: 100px 40px 40px 120px;
+    margin: 155px 0;
 }
 
 /* Заголовок */
@@ -41,10 +41,12 @@
 .filterButton:hover {
   background-color: #45a049;
 }
-.filtericon {
-  width: 14px;
-  height: 14px;
+
+.filterIcon {
+  width: 16px;
+  height: 16px;
   margin-right: 8px;
+  fill: white;
 }
 
 .openModalButton {

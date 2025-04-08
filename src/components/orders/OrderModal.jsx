@@ -79,14 +79,19 @@ const OrderModal = ({ order, onClose }) => {
             />
           </div>
           <div className={styles.rightColumn}>
-            <input
-              type="datetime-local"
-              value={formData.orderDate}
-              onChange={(e) =>
-                setFormData({ ...formData, orderDate: e.target.value })
-              }
-              required
-            />
+            <div className={styles.dateInputContainer}>
+              <input
+                type="datetime-local"
+                value={formData.orderDate}
+                onChange={(e) =>
+                  setFormData({ ...formData, orderDate: e.target.value })
+                }
+                required
+              />
+              <svg className={styles.calendarIcon}>
+                <use href="/public/sprite.svg#icon-calendar-small"></use>
+              </svg>
+            </div>
             <input
               type="number"
               placeholder="Price"

@@ -1,8 +1,8 @@
 /* Общий контейнер */
 .customersPage {
    margin-top: 155px;
-  margin-left: 120px;
-  margin-right: 40px;
+  /* margin-left: 120px;
+  margin-right: 40px; */
 
 }
 
@@ -44,10 +44,12 @@
 .filterButton:hover {
   background-color: #45a049;
 }
-.filtericon {
-  width: 14px;
-  height: 14px;
+
+.filterIcon {
+  width: 16px;
+  height: 16px;
   margin-right: 8px;
+  fill: white;
 }
 
 .openModalButton {

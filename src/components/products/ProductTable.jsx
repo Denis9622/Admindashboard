@@ -38,7 +38,7 @@ const ProductTable = ({ products, handleEditProduct, handleDeleteProduct }) => {
                         onClick={() => handleEditProduct(product)}
                       >
                         <svg className={styles.iconEdit}>
-                          <use href="/public/sprite.svg#icon-edit"></use>
+                          <use href="/sprite.svg#icon-edit"></use>
                         </svg>
                       </button>
                       <button
@@ -46,7 +46,7 @@ const ProductTable = ({ products, handleEditProduct, handleDeleteProduct }) => {
                         onClick={() => handleDeleteProduct(product._id)}
                       >
                         <svg className={styles.iconDelete}>
-                          <use href="/public/sprite.svg#icon-delete"></use>
+                          <use href="/sprite.svg#icon-delete"></use>
                         </svg>
                       </button>
                     </div>

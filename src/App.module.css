@@ -54,13 +54,13 @@ body {
 }
 
 .app {
-  padding: 100px 20px 40px 20px;
+  padding: 20px 20px 20px 20px;
 }
 
 /* Mobile */
 @media screen and (min-width: 375px) {
   .app {
-    padding: 100px 20px 40px 20px;
+    padding: 20px 20px 20px 20px;
   }
 }
 
@@ -68,7 +68,7 @@ body {
 @media screen and (min-width: 768px) {
   .app {
     max-width: 768px;
-    padding: 100px 32px 40px 32px;
+    padding: 20px 32px 32px 32px;
   }
 }
 
@@ -76,7 +76,7 @@ body {
 @media screen and (min-width: 1024px) {
   .app {
     max-width: 1024px;
-    padding: 100px 40px 40px 120px;
+    padding: 100px 40px 40px 100px;
   }
 }
 
@@ -84,6 +84,7 @@ body {
 @media screen and (min-width: 1440px) {
   .app {
     max-width: 1440px;
-    padding: 100px 40px 40px 120px;
+    padding: 100px 40px 40px 100px;
   }
 }
+

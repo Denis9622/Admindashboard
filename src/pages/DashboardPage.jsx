@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import styles from "./dashboardPage.module.css";
+import styles from "./dashboardPage.module.scss";
 import Statistics from "../components/dashboard/Statistics.jsx";
 import RecentCustomers from "../components/dashboard/RecentCustomers.jsx";
 import IncomeExpenses from "../components/dashboard/IncomeExpenses.jsx";

@@ -75,6 +75,9 @@ const SuppliersPage = () => {
           className={styles.filterInput}
         />
         <button className={styles.filterButton} onClick={handleFilter}>
+          <svg className={styles.filterIcon}>
+            <use href="/sprite.svg#icon-filter"></use>
+          </svg>
           Filter
         </button>
         <button
@@ -106,8 +109,7 @@ const SuppliersPage = () => {
                   ? styles.activePageButton
                   : styles.pageButton
               }
-            >
-            </button>
+            ></button>
           )
         )}
       </div>
