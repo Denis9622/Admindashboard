@@ -4,7 +4,7 @@ import { fetchOrders, deleteOrder } from "../redux/orders/ordersOperations";
 import { fetchCustomers } from "../redux/customers/customersOperations";
 import OrdersTable from "../components/orders/OrdersTable";
 import OrderModal from "../components/orders/OrderModal";
-import styles from "./ordersPage.module.css";
+import styles from "./ordersPage.module.scss";
 
 const OrdersPage = () => {
   const dispatch = useDispatch();

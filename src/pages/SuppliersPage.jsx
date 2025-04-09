@@ -6,7 +6,7 @@ import {
 } from "../redux/suppliers/suppliersSlice";
 import SuppliersTable from "../components/suppliers/SuppliersTable";
 import SupplierModal from "../components/suppliers/SupplierModal";
-import styles from "./suppliersPage.module.css";
+import styles from "./suppliersPage.module.scss";
 
 const SuppliersPage = () => {
   const dispatch = useDispatch();

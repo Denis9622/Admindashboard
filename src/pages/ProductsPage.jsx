@@ -7,7 +7,7 @@ import {
 import { refreshToken } from "../redux/auth/authOperations.js";
 import ProductModal from "../components/products/ProductModal.jsx";
 import ProductTable from "../components/products/ProductTable.jsx";
-import styles from "./productsPage.module.css";
+import styles from "./productsPage.module.scss";
 
 const ProductsPage = () => {
   const dispatch = useDispatch();

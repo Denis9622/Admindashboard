@@ -120,7 +120,7 @@
     }
 
     @include media($desktop) {
-      margin-top: 226px;
+      margin-top: 287px;
       width: 323px;
     }
   }
@@ -137,6 +137,48 @@
       max-width: 323px;
     }
   }
+
+  .inputWrapper {
+    width: 100%;
+    margin-bottom: 8px;
+    position: relative;
+  }
+
+  .fieldError {
+    color: #ff4d4f;
+    font-size: 12px;
+    margin-top: 4px;
+    margin-bottom: 0;
+    position: absolute;
+    bottom: -20px;
+    left: 18px;
+  }
+
+  .button {
+    &:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      
+      &:hover {
+        background-color: #ccc;
+      }
+    }
+  }
+}
+
+.errorMessage {
+  color: #ff4d4f;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.successMessage {
+  color: #59b17a;
+  margin-bottom: 10px;
+  text-align: center;
+  font-size: 14px;
+}
 
   .passwordWrapper {
     position: relative;
@@ -156,10 +198,11 @@
   .icon {
     width: 20px;
     height: 20px;
-    fill: rgba(29, 30, 33, 0.4);
+    fill:none;
+    stroke: #1D1E21;
 
     &:hover {
-      fill: #59b17a;
+      stroke:#3f945f;
     }
   }
 
@@ -176,6 +219,52 @@
     &:focus {
       border: 1px solid rgba(89, 177, 122, 1);
       outline: none;
+    }
+
+    &[aria-invalid="true"] {
+      border-color: #ff4d4f;
+      color: #ff4d4f;
+
+      &:focus {
+        border-color: #ff4d4f;
+      }
+
+      &::placeholder {
+        color: #ff4d4f;
+      }
+    }
+  }
+
+  .passwordWrapper {
+    position: relative;
+    width: 100%;
+
+    &:has(input[aria-invalid="true"]) {
+      .passwordToggleIcon .icon {
+        stroke: #ff4d4f;
+        
+        &:hover {
+          stroke: #ff4d4f;
+        }
+      }
+    }
+  }
+
+  .inputWrapper {
+    width: 100%;
+    margin-bottom: 8px;
+    position: relative;
+
+    &:has(input[aria-invalid="true"]) {
+      .passwordToggleIcon {
+        .icon {
+          stroke: #ff4d4f;
+          
+          &:hover {
+            stroke: #ff4d4f;
+          }
+        }
+      }
     }
   }
 
@@ -229,5 +318,30 @@ letter-spacing: -3%;
     width: 44px;
     height: auto;
   }
-}
+  .errorMessage {
+    .inputWrapper {
+      width: 100%;
+      margin-bottom: 8px;
+    }
+  
+    .fieldError {
+      color: #ff4d4f;
+      font-size: 12px;
+      margin-top: 4px;
+      margin-bottom: 0;
+    }
+  
+    .button:disabled {
+      background-color: #ccc;
+      cursor: not-allowed;
+      
+      &:hover {
+        background-color: #ccc;
+      }
+    }
+    color: #ff4d4f;
+    margin-bottom: 10px;
+    text-align: center;
+    font-size: 14px;
+  }
 

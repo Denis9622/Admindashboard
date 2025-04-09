@@ -1,6 +1,10 @@
 /* -------------------------
    Global Table Styles
 ------------------------- */
+.ordersTable {
+  width: 100%;
+
+}
 
 .scrollWrapper {
   /* margin: 0 -20px; */

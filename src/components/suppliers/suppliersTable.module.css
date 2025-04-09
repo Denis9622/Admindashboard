@@ -1,10 +1,19 @@
-.recentSuppliers {
+/* -------------------------
+   Global Table Styles
+------------------------- */
+.suppliersTable {
+  width: 100%;
+}
+
+.scrollWrapper {
   padding: 0 20px;
   background: white;
   border: 1px solid rgba(29, 30, 33, 0.1);
   border-radius: 8px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .recentSuppliers table {
@@ -16,7 +25,6 @@
 .recentSuppliers td {
   border: 1px solid rgba(29, 30, 33, 0.1);
   text-align: left;
-  padding: 20px;
 }
 
 .recentSuppliers th {
@@ -25,6 +33,7 @@
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
+  padding: 20px;
 }
 
 .recentSuppliers td {
@@ -32,6 +41,7 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 18px;
+  padding: 30px 20px;
 }
 
 .recentSuppliers th:first-child,
@@ -44,6 +54,9 @@
   padding-right: 0;
 }
 
+/* -------------------------
+   Removing Specific Borders
+------------------------- */
 .recentSuppliers table tr:first-child th {
   border-top: none;
 }
@@ -62,6 +75,9 @@
   border-right: none;
 }
 
+/* -------------------------
+   Header (H3) Styles
+------------------------- */
 .suppliersTable h3 {
   background-color: #e7f1ed;
   padding: 20px;
@@ -75,8 +91,11 @@
   border-bottom-left-radius: 0;
 }
 
+/* -------------------------
+   Button Group (Actions)
+------------------------- */
 .buttonBox {
-  display: flex; 
+  display: flex;
   gap: 8px;
 }
 
@@ -89,21 +108,25 @@
   height: 32px;
   border-radius: 50%;
   background: transparent;
+  cursor: pointer;
 }
 
 .editButton {
-  border: 1px solid rgba(89, 177, 122, 0.5); 
+  border: 1px solid rgba(89, 177, 122, 0.5);
 }
 
 .deleteButton {
-  border: 1px solid rgba(232, 80, 80, 0.5); 
+  border: 1px solid rgba(232, 80, 80, 0.5);
 }
 
+/* -------------------------
+   Icon Styles
+------------------------- */
 .iconEdit,
 .iconDelete {
-  width: 16px; 
+  width: 16px;
   height: 16px;
-  fill: currentColor; 
+  fill: currentColor;
 }
 
 .recentSuppliers th {
@@ -112,4 +135,44 @@
 
 .recentSuppliers table {
   box-shadow: none;
+}
+
+/* -------------------------
+   Media Queries
+------------------------- */
+@media (max-width: 768px) {
+  .suppliersTable {
+    width: 100%;
+  }
+  .recentSuppliers td:last-child {
+    padding-right: 14px;
+  }
+}
+
+@media (max-width: 375px) {
+  .suppliersTable {
+    width: 335px;
+  }
+
+  .suppliersTable h3 {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 14px;
+  }
+
+  .recentSuppliers th {
+    font-size: 12px;
+    line-height: 14px;
+    padding: 14px;
+  }
+
+  .recentSuppliers td {
+    font-size: 12px;
+    line-height: 14px;
+    padding: 30px 14px;
+  }
+  
+  .recentSuppliers td:last-child {
+    padding-right: 14px;
+  }
 }

@@ -6,7 +6,7 @@ import {
 } from "../redux/customers/customersOperations";
 import CustomersTable from "../components/customers/CustomersTable";
 import CustomerModal from "../components/customers/CustomerModal";
-import styles from "./customersPage.module.css";
+import styles from "./customersPage.module.scss";
 
 const CustomersPage = () => {
   const dispatch = useDispatch();

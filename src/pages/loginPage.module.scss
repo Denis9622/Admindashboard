@@ -119,7 +119,7 @@
     }
 
     @include media($desktop) {
-      margin-top: 226px;
+      margin-top: 287px;
       width: 323px;
     }
   }
@@ -155,10 +155,11 @@
   .icon {
     width: 20px;
     height: 20px;
-    fill: rgba(29, 30, 33, 0.4);
+    fill:none;
+    stroke: #1D1E21;
 
     &:hover {
-      fill: #59b17a;
+      stroke:#3f945f;
     }
   }
 

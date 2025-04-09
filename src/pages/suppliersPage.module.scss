@@ -1,8 +1,15 @@
 /* Общий контейнер */
+@use '../styles/mixins' as *;
+
 .suppliersPage {
-  margin-top: 155px;
-  /* margin-left: 120px; */
-  /* margin-right: 40px; */
+  margin: 80px 0 0 0;
+  @include media($laptop) {
+    margin: 0 0 0 20px;
+  }
+
+  @include media($desktop) {
+    margin: 0 0 0 20px;
+  }
 }
 
 /* Заголовок */

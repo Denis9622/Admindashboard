@@ -1,0 +1,103 @@
+/* Общий контейнер */
+@use '../styles/mixins' as *;
+
+.ordersPage {
+     margin: 80px 0 0 0;
+    @include media($laptop) {
+      margin: 0 0 0 20px;
+    }
+  
+    @include media($desktop) {
+      margin: 0 0 0 20px;
+    }
+}
+
+/* Фильтр */
+.filterContainer {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  margin-bottom: 20px;
+}
+
+.filterInput {
+  padding: 13px 18px;
+  margin-right: 10px;
+  border: 1px solid rgba(29, 30, 33, 0.1);
+  border-radius: 60px;
+  width: 224px;
+  box-shadow: 0px -1px 5px 0px rgba(71, 71, 71, 0.05);
+}
+
+.filterButton {
+  display: flex;
+  align-items: center;
+  padding: 13px 30px;
+  background-color: rgba(89, 177, 122, 1);
+  color: white;
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #45a049;
+  }
+}
+
+.filterIcon {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  fill: white;
+}
+
+.openModalButton {
+  display: flex;
+  padding: 13px 30px;
+  background-color: rgba(89, 177, 122, 1);
+  color: white;
+  border: none;
+  border-radius: 60px;
+  cursor: pointer;
+  margin-left: auto;
+
+  &:hover {
+    background-color: #45a049;
+  }
+}
+
+/* Ошибки */
+.error {
+  color: red;
+  font-weight: bold;
+  text-align: center;
+}
+
+/* Пагинация */
+.pagination {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  gap: 8px;
+}
+
+.activePageButton {
+  border: none;
+  padding: 3.56px;
+  width: 11.88px;
+  height: 11.88px;
+  border-radius: 50%;
+  background-color: rgba(89, 177, 122, 1);
+}
+
+.pageButton {
+  border: none;
+  padding: 3.56px;
+  width: 11.88px;
+  height: 11.88px;
+  border-radius: 50%;
+  background-color: rgba(231, 241, 237, 1);
+}

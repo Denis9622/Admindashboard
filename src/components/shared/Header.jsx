@@ -1,15 +1,34 @@
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../redux/auth/authOperations";
-import { useNavigate, NavLink } from "react-router-dom";
-import styles from "./Header.module.css";
-import Logo from "../assets/authenticatedLogo.svg"; // Логотип
+import { useNavigate, NavLink, useLocation } from "react-router-dom"; // Добавляем useLocation
+import styles from "./Header.module.scss";
+import Logo from "../assets/authenticatedLogo.svg";
 
 function Header({ toggleSidebar }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const location = useLocation(); // Получаем текущий путь
 
   const user = useSelector((state) => state.auth.user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  // Функция для определения заголовка на основе пути
+  const getPageTitle = () => {
+    switch (location.pathname) {
+      case '/':
+        return 'Dashboard';
+      case '/customers':
+        return 'Customers';
+      case '/orders':
+        return 'Orders';
+      case '/products':
+        return 'Products';
+      case '/suppliers':
+        return 'Suppliers';
+      default:
+        return 'Dashboard';
+    }
+  };
 
   const handleLogout = async () => {
     await dispatch(logoutUser());
@@ -35,8 +54,8 @@ function Header({ toggleSidebar }) {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard" className={styles.navLink}>
-                Dashboard{" | "}
+              <NavLink to={location.pathname} className={styles.navLink}>
+                {getPageTitle()}{" | "}
                 <span className={styles.username}>
                   {user?.email || "No Email"}
                 </span>

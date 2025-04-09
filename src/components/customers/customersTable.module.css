@@ -1,34 +1,39 @@
 /* -------------------------
    Global Table Styles
 ------------------------- */
+.customersTable {
+  width: 100%;
+}
 
-.recentCustomers {
+.scrollWrapper {
   padding: 0 20px;
   background: white;
   border: 1px solid rgba(29, 30, 33, 0.1);
   border-radius: 8px;
   border-top-left-radius: 0;
   border-top-right-radius: 0;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
 }
 
 .recentCustomers table {
   width: 100%;
-  border-collapse: collapse; /* Убираем внутренние промежутки между ячейками */
+  border-collapse: collapse;
 }
 
 .recentCustomers th,
 .recentCustomers td {
-  border: 1px solid rgba(29, 30, 33, 0.1); /* Внутренние границы */
-  text-align: left; /* Выравнивание текста */
-  padding: 20px;
+  border: 1px solid rgba(29, 30, 33, 0.1);
+  text-align: left;
 }
 
 .recentCustomers th {
-  background-color: #e7f1ed; /* Фон для заголовков */
+  background-color: #e7f1ed;
   color: #1d1e2166;
   font-size: 14px;
   font-weight: 500;
   line-height: 18px;
+  padding: 20px;
 }
 
 .recentCustomers td {
@@ -36,44 +41,43 @@
   font-size: 16px;
   font-weight: 500;
   line-height: 18px;
+  padding: 30px 20px;
 }
 
 .recentCustomers th:first-child,
 .recentCustomers td:first-child {
-  padding-left: 0; /* Убираем отступ слева у первого столбца */
+  padding-left: 0;
 }
 
 .recentCustomers th:last-child,
 .recentCustomers td:last-child {
-  padding-right: 0; /* Убираем отступ справа у последнего столбца */
+  padding-right: 0;
 }
 
 /* -------------------------
    Removing Specific Borders
 ------------------------- */
-
 .recentCustomers table tr:first-child th {
-  border-top: none; /* Убираем верхнюю границу у первой строки */
+  border-top: none;
 }
 
 .recentCustomers table tr:last-child td {
-  border-bottom: none; /* Убираем нижнюю границу у последней строки */
+  border-bottom: none;
 }
 
 .recentCustomers table tr td:first-child,
 .recentCustomers table tr th:first-child {
-  border-left: none; /* Убираем левую границу у первого столбца */
+  border-left: none;
 }
 
 .recentCustomers table tr td:last-child,
 .recentCustomers table tr th:last-child {
-  border-right: none; /* Убираем правую границу у последнего столбца */
+  border-right: none;
 }
 
 /* -------------------------
    Header (H3) Styles
 ------------------------- */
-
 .customersTable h3 {
   background-color: #e7f1ed;
   padding: 20px;
@@ -90,10 +94,9 @@
 /* -------------------------
    Button Group (Actions)
 ------------------------- */
-
 .buttonBox {
-  display: flex; 
-  gap: 8px; 
+  display: flex;
+  gap: 8px;
 }
 
 .editButton,
@@ -103,32 +106,73 @@
   align-items: center;
   width: 32px;
   height: 32px;
-  border-radius: 50%; 
+  border-radius: 50%;
   background: transparent;
+  cursor: pointer;
 }
 
 .editButton {
-  border: 1px solid rgba(89, 177, 122, 0.5); 
+  border: 1px solid rgba(89, 177, 122, 0.5);
 }
 
 .deleteButton {
-  border: 1px solid rgba(232, 80, 80, 0.5); 
+  border: 1px solid rgba(232, 80, 80, 0.5);
 }
 
 /* -------------------------
    Icon Styles
 ------------------------- */
-
 .iconEdit,
 .iconDelete {
-  width: 16px; 
+  width: 16px;
   height: 16px;
-  fill: currentColor; 
+  fill: currentColor;
 }
 
-.recentCustomers th{
+.recentCustomers th {
   background: none;
 }
-.recentCustomers table{
+
+.recentCustomers table {
   box-shadow: none;
+}
+
+/* -------------------------
+   Media Queries
+------------------------- */
+@media (max-width: 768px) {
+  .customersTable {
+    width: 100%;
+  }
+  .recentCustomers td:last-child {
+    padding-right: 14px;
+  }
+}
+
+@media (max-width: 375px) {
+  .customersTable {
+    width: 335px;
+  }
+
+  .customersTable h3 {
+    font-size: 16px;
+    line-height: 20px;
+    padding: 14px;
+  }
+
+  .recentCustomers th {
+    font-size: 12px;
+    line-height: 14px;
+    padding: 14px;
+  }
+
+  .recentCustomers td {
+    font-size: 12px;
+    line-height: 14px;
+    padding: 30px 14px;
+  }
+  
+  .recentCustomers td:last-child {
+    padding-right: 14px;
+  }
 }

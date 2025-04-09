@@ -1,8 +1,18 @@
-.productsPage {
-  margin-top: 155px;
-  /* margin-left: 120px; */
-  /* margin-right: 40px; */
+/* Общий контейнер */
+@use '../styles/mixins' as *;
+
+.customersPage {
+    margin: 80px 0 0 0;
+    @include media($laptop) {
+      margin: 0 0 0 20px;
+    }
+  
+    @include media($desktop) {
+      margin: 0 0 0 20px;
+    }
 }
+
+/* Фильтр */
 .filterContainer {
   display: flex;
   align-items: center;
@@ -10,13 +20,7 @@
   margin-bottom: 20px;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 15px;
-}
-
-.searchInput {
+.filterInput {
   padding: 13px 18px;
   margin-right: 10px;
   border: 1px solid rgba(29, 30, 33, 0.1);
@@ -24,6 +28,7 @@
   width: 224px;
   box-shadow: 0px -1px 5px 0px rgba(71, 71, 71, 0.05);
 }
+
 .filterButton {
   display: flex;
   align-items: center;
@@ -33,6 +38,10 @@
   border: none;
   border-radius: 60px;
   cursor: pointer;
+
+  &:hover {
+    background-color: #45a049;
+  }
 }
 
 .filterIcon {
@@ -42,55 +51,75 @@
   fill: white;
 }
 
-.addButton {
+.openModalButton {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 13px;
+  padding: 13px 30px;
   background-color: rgba(89, 177, 122, 1);
-  color: #1d1e21;
+  color: white;
   border: none;
   border-radius: 60px;
   cursor: pointer;
   margin-left: auto;
-  /* font-size: 32px; */
-  width: 42px;
-  height: 42px;
-  margin-right: 8px;
+
+  &:hover {
+    background-color: #45a049;
+  }
 }
 
-.addButton:hover {
-  background-color: #45a049;
-}
-
-.noProducts {
+/* Ошибки */
+.error {
+  color: red;
+  font-weight: bold;
   text-align: center;
-  padding: 15px;
-  color: #777;
 }
 
-.iconAdd {
-  width: 16px;
-  height: 16px;
-  fill: white;
-  /* background-color: #651f1f; */
+/* Модальное окно */
+.modalBackdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
-.textAdd {
-  font-weight: 500;
-  font-size: 14px;
-  line-height: 18px;
-  letter-spacing: 0%;
+
+.modal {
+  background-color: #fff;
+  width: 400px;
+  max-width: 90%;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Анимация модального окна */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .pagination {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center; /* Центрирование */
+  justify-content: center;
   margin-top: 20px;
   margin-bottom: 40px;
   gap: 8px;
 }
+
 .activePageButton {
   border: none;
   padding: 3.56px;
@@ -99,6 +128,7 @@
   border-radius: 50%;
   background-color: rgba(89, 177, 122, 1);
 }
+
 .pageButton {
   border: none;
   padding: 3.56px;
