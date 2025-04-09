@@ -6,7 +6,7 @@
   .backgroundImage {
     position: absolute;
     bottom: 0;
-  
+    pointer-events: none;
     top: 646px;
     left: 97px;
   
@@ -128,13 +128,16 @@
   .form {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 10px;
     max-width: 323px;
     margin: 0 auto;
 
     @include media($tablet) {
       margin: 0;
       max-width: 323px;
+    }
+    @include media($desktop) {
+      gap: 14px;
     }
   }
 
@@ -270,7 +273,7 @@
 
   .button {
     font-family: inherit;
-    margin-top: 40px;
+    margin-top: 20px;
     background-color: #59b17a;
     color: white;
     padding: 13px;
@@ -283,6 +286,10 @@
 
     &:hover {
       background-color: #3f945f;
+    }
+    @include media($tablet) {
+      margin-top: 54px;
+
     }
   }
 
