@@ -67,24 +67,26 @@ const SuppliersPage = () => {
       {error && <p className={styles.error}>{error.message || error}</p>}
 
       <div className={styles.filterContainer}>
-        <input
-          type="text"
-          placeholder="User Name"
-          value={filterName}
-          onChange={(e) => setFilterName(e.target.value)}
-          className={styles.filterInput}
-        />
-        <button className={styles.filterButton} onClick={handleFilter}>
-          <svg className={styles.filterIcon}>
-            <use href="/sprite.svg#icon-filter"></use>
-          </svg>
-          Filter
-        </button>
+        <div className={styles.searchWrapper}>
+          <input
+            type="text"
+            placeholder="Supplier Name"
+            value={filterName}
+            onChange={(e) => setFilterName(e.target.value)}
+            className={styles.filterInput}
+          />
+          <button className={styles.filterButton} onClick={handleFilter}>
+            <svg className={styles.filterIcon}>
+              <use href="/sprite.svg#icon-filter"></use>
+            </svg>
+            Filter
+          </button>
+        </div>
         <button
           className={styles.openModalButton}
           onClick={() => setIsModalOpen(true)}
         >
-          Add Supplier
+          Add a new supplier
         </button>
       </div>
 

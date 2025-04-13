@@ -10,23 +10,21 @@ export const registerUser = createAsyncThunk(
       const response = await api.post("/auth/register", userData);
       const { id, name, email, accessToken } = response.data.data;
 
-      // Сохраняем только access token и данные пользователя
       localStorage.setItem("user", JSON.stringify({ id, name, email }));
       localStorage.setItem("token", accessToken);
       setAuthHeader(accessToken);
 
       return { id, name, email, accessToken };
     } catch (error) {
-      console.error(
-        "Ошибка регистрации:",
-        error.response?.data || error.message
-      );
+      // При ошибке регистрации очищаем все данные
+      localStorage.clear();
+      setAuthHeader(null);
       return rejectWithValue(error.response?.data || "Ошибка регистрации");
     }
   }
 );
 
-// 📌 Вход пользователя
+// 📌 Login user
 export const loginUser = createAsyncThunk(
   "auth/login",
   async (credentials, { rejectWithValue }) => {
@@ -34,39 +32,40 @@ export const loginUser = createAsyncThunk(
       const response = await api.post("/auth/login", credentials);
       const { user, accessToken } = response.data.data;
 
-      // Сохраняем только access token и данные пользователя
+      // Store only access token and user data
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", accessToken);
       setAuthHeader(accessToken);
 
       return { user, accessToken };
     } catch (error) {
-      console.error("Ошибка входа:", error.response?.data || error.message);
-      return rejectWithValue(error.response?.data || "Ошибка входа");
+      // Clear any existing tokens on login error
+      localStorage.clear();
+      setAuthHeader(null);
+      return rejectWithValue(error.response?.data || "Login failed");
     }
   }
 );
 
-// 📌 Выход пользователя
+// 📌 Logout user
 export const logoutUser = createAsyncThunk(
   "auth/logout",
   async (_, { rejectWithValue }) => {
     try {
       await api.post("/auth/logout");
-
-      // Очищаем локальные данные
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      
+      localStorage.clear();
       setAuthHeader(null);
-
-      return null;
+      
+      // Перенаправляем на страницу логина
+      window.location.href = '/login';
+      return true;
     } catch (error) {
-      console.error("Ошибка выхода:", error.response?.data || error.message);
-      // Даже при ошибке очищаем данные
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+      localStorage.clear();
       setAuthHeader(null);
-      return rejectWithValue(error.response?.data || "Ошибка выхода");
+      // Даже при ошибке перенаправляем на логин
+      window.location.href = '/login';
+      return rejectWithValue("Ошибка при выходе");
     }
   }
 );

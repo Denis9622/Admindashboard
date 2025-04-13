@@ -76,23 +76,27 @@ const ProductsPage = () => {
   return (
     <div className={styles.productsPage}>
       <div className={styles.filterContainer}>
-        <input
-          type="text"
-          placeholder="Product Name"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className={styles.searchInput}
-        />
-        <button onClick={handleFilter} className={styles.filterButton}>
-          <svg className={styles.filterIcon}>
-            <use href="/sprite.svg#icon-filter"></use>
-          </svg>
-          Filter
-        </button>
+        <div className={styles.searchWrapper}>
+          <input
+            type="text"
+            placeholder="Product Name"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className={styles.filterInput}
+          />
+          <button onClick={handleFilter} className={styles.filterButton}>
+            <svg className={styles.filterIcon}>
+              <use href="/sprite.svg#icon-filter"></use>
+            </svg>
+            Filter
+          </button>
+        </div>
+        <div className={styles.containerButton}>
         <button onClick={handleAddProduct} className={styles.addButton}>
           <img src="/public/Vector.svg" alt="Add" className={styles.iconAdd} />
         </button>
-        <p className={styles.textAdd}> Add a new product</p>
+        <p className={styles.textAdd}>Add a new product</p>
+      </div>
       </div>
 
       {loading && <p>Loading...</p>}

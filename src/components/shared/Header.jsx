@@ -18,13 +18,13 @@ function Header({ toggleSidebar }) {
       case '/':
         return 'Dashboard';
       case '/customers':
-        return 'Customers';
+        return 'All customers';
       case '/orders':
-        return 'Orders';
+        return 'All orders';
       case '/products':
-        return 'Products';
+        return 'All products';
       case '/suppliers':
-        return 'Suppliers';
+        return 'All puppliers';
       default:
         return 'Dashboard';
     }

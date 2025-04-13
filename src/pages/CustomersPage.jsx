@@ -66,24 +66,26 @@ const CustomersPage = () => {
       {error && <p className={styles.error}>{error}</p>}
 
       <div className={styles.filterContainer}>
-        <input
-          type="text"
-          placeholder="Filter by name"
-          value={filterName}
-          onChange={(e) => setFilterName(e.target.value)}
-          className={styles.filterInput}
-        />
-        <button className={styles.filterButton} onClick={handleFilter}>
-          <svg className={styles.filterIcon}>
-            <use href="/sprite.svg#icon-filter"></use>
-          </svg>
-          Filter
-        </button>
+        <div className={styles.searchWrapper}>
+          <input
+            type="text"
+            placeholder="Customer Name"
+            value={filterName}
+            onChange={(e) => setFilterName(e.target.value)}
+            className={styles.filterInput}
+          />
+          <button className={styles.filterButton} onClick={handleFilter}>
+            <svg className={styles.filterIcon}>
+              <use href="/sprite.svg#icon-filter"></use>
+            </svg>
+            Filter
+          </button>
+        </div>
         <button
           className={styles.openModalButton}
           onClick={() => setIsModalOpen(true)}
         >
-          Add Customer
+          Add a new customer
         </button>
       </div>
 

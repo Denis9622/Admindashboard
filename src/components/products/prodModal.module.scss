@@ -1,6 +1,5 @@
-/* -------------------------
-   Modal Overlay
-------------------------- */
+@use '../../styles/mixins' as *;
+
 .modalOverlay {
   position: fixed;
   top: 0;
@@ -20,13 +19,31 @@
 .modal {
   background-color: #fff;
   border-radius: 12px;
-  padding: 40px 40px 60px 40px;
-  /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); */
-  /* width: 400px; */
-  /* max-width: 90%;  */
   text-align: center;
   position: relative;
+  padding: 40px 20px;
+
+  
+    @include media($mobile) {
+      max-width: 335px;
+    }
+  
+    @include media($tablet) {
+      padding: 40px 40px 60px 40px;
+      max-width: 600px;
+    }
+  
+    @include media($laptop) {
+      padding: 40px 40px 60px 40px;
+      max-width: 600px;
+    }
+  
+    @include media($desktop) {
+      padding: 40px 40px 60px 40px;
+      max-width: 600px;
+    }
 }
+
 .closeButton {
   position: absolute;
   top: 14px;
@@ -47,8 +64,12 @@
 ------------------------- */
 .form {
   display: flex;
-  /* flex-wrap: wrap; */
-  /* justify-content: space-between; */
+  flex-direction: column;
+
+
+  @include media($tablet) {
+    flex-direction: row;
+  }
 }
 
 .leftColumn,
@@ -57,11 +78,18 @@
   flex-direction: column;
   gap: 14px;
   color: #1d1e2166;
+  width: 100%;
 
   /* width: 48%; */
 }
 .leftColumn {
-  margin-right: 8px;
+  margin-bottom: 14px;
+
+  @include media($tablet) {
+    margin-right: 8px;
+
+    margin-bottom: 0px;
+  }
 }
 form input,
 form select {
@@ -74,7 +102,7 @@ form select {
   font-size: 12px;
   line-height: 18px;
   letter-spacing: 0px;
-
+  width: 100%;
   border: 1px solid #1d1e211a;
   border-radius: 60px;
 }
@@ -86,29 +114,29 @@ form input:focus,
 form select:focus {
   border: 1px solid rgba(89, 177, 122, 1);
   outline: none;
-  /* box-shadow: 0 0 4px rgba(0, 123, 255, 0.5); */
 }
 
 .buttonContainer {
-  /* display: flex; */
-  /* justify-content: space-between; */
-  /* width: 100%; */
+  display: flex; 
   margin-top: 40px;
   text-align: left;
 }
 
 .buttonContainer button {
-  width: 133px;
+  font-size: 12px;
+  line-height: 18px;
+  width: 146px;
   padding: 13px 0px;
   font-weight: 500;
-  font-size: 14px;
-  line-height: 18px;
   letter-spacing: 0%;
   border: none;
   border-radius: 60px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  /* width: 48%; */
+  @include media($tablet) {
+    width: 133px;
+    font-size: 14px;
+  }
 }
 
 /* Кнопки Submit и Cancel */
@@ -146,11 +174,17 @@ form select:focus {
 
 /* Заголовок модального окна */
 h2 {
-  text-align: left;
-  font-weight: 600;
+text-align: left;
+font-weight: 600;
+font-size: 20px;
+line-height: 24px;
+letter-spacing: 0px;
+margin-bottom: 20px;
+color: #1d1e21;
+
+@include media($tablet) {
   font-size: 24px;
   line-height: 28px;
-  letter-spacing: 0px;
   margin-bottom: 40px;
-  color: #1d1e21;
+  }
 }

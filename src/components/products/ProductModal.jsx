@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import {
   addProduct,
@@ -6,17 +6,13 @@ import {
   fetchProducts,
 } from "../../redux/products/productsOperations.js";
 import CustomSelect from "./CustomSelect.jsx";
-import styles from "./prodModal.module.css";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+import styles from "./prodModal.module.scss";
 
 const ProductModal = ({ product, onClose }) => {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({
-    name: product ? product.name : "",
-    category: product ? product.category : "",
-    stock: product ? product.stock : "",
-    suppliers: product ? product.suppliers.join(", ") : "",
-    price: product ? product.price : "",
-  });
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
@@ -33,21 +29,38 @@ const ProductModal = ({ product, onClose }) => {
     ]);
   }, []);
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().required("Product name is required"),
+    category: Yup.string().required("Category is required"),
+    stock: Yup.number().min(0, "Stock must be non-negative").required("Stock is required"),
+    price: Yup.number().min(0, "Price must be non-negative").required("Price is required"),
+    suppliers: Yup.string().required("Suppliers are required"),
+  });
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+    defaultValues: {
+      name: product?.name || "",
+      category: product?.category || "",
+      stock: product?.stock || "",
+      suppliers: product?.suppliers?.join(", ") || "",
+      price: product?.price || "",
+    }
+  });
+
+  const onSubmit = async (data) => {
     const updatedProduct = {
-      ...formData,
-      suppliers: formData.suppliers.split(",").map((s) => s.trim()),
+      ...data,
+      suppliers: data.suppliers.split(",").map((s) => s.trim()),
     };
     try {
       if (product) {
-        await dispatch(
-          updateProduct({ ...updatedProduct, _id: product._id })
-        ).unwrap();
+        await dispatch(updateProduct({ ...updatedProduct, _id: product._id })).unwrap();
       } else {
         await dispatch(addProduct(updatedProduct)).unwrap();
       }
@@ -67,54 +80,54 @@ const ProductModal = ({ product, onClose }) => {
           </svg>
         </button>
         <h2>{product ? "Edit Product" : "Add a new product"}</h2>
-        <form className={styles.form}>
+
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.leftColumn}>
             <input
               type="text"
-              name="name"
+              {...register("name")}
               placeholder="Product Info"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              className={styles.inputtext}
+              className={`${styles.inputtext} ${errors.name ? styles.inputError : ""}`}
             />
+            {errors.name && <p className={styles.error}>{errors.name.message}</p>}
+
             <input
               type="number"
-              name="stock"
+              {...register("stock")}
               placeholder="Stock"
-              value={formData.stock}
-              onChange={handleChange}
-              required
+              className={errors.stock ? styles.inputError : ""}
             />
+            {errors.stock && <p className={styles.error}>{errors.stock.message}</p>}
+
             <input
               type="number"
-              name="price"
+              {...register("price")}
               placeholder="Price"
-              value={formData.price}
-              onChange={handleChange}
-              required
+              className={errors.price ? styles.inputError : ""}
             />
+            {errors.price && <p className={styles.error}>{errors.price.message}</p>}
           </div>
+
           <div className={styles.rightColumn}>
             <CustomSelect
               options={categories}
-              selected={formData.category}
-              onChange={(value) =>
-                setFormData({ ...formData, category: value })
-              }
+              selected={product?.category}
+              onChange={(value) => setValue("category", value)}
             />
+            {errors.category && <p className={styles.error}>{errors.category.message}</p>}
+
             <input
               type="text"
-              name="suppliers"
+              {...register("suppliers")}
               placeholder="Suppliers"
-              value={formData.suppliers}
-              onChange={handleChange}
-              required
+              className={errors.suppliers ? styles.inputError : ""}
             />
+            {errors.suppliers && <p className={styles.error}>{errors.suppliers.message}</p>}
           </div>
         </form>
+
         <div className={styles.buttonContainer}>
-          <button className={styles.primaryButton} onClick={handleSubmit}>
+          <button className={styles.primaryButton} onClick={handleSubmit(onSubmit)}>
             {product ? "Save" : "Add"}
           </button>
           <button type="button" onClick={onClose}>

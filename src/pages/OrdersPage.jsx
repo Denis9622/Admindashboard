@@ -73,24 +73,26 @@ const OrdersPage = () => {
       {customersError && <p className={styles.error}>{customersError}</p>}
 
       <div className={styles.filterContainer}>
-        <input
-          type="text"
-          placeholder="User Name"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          className={styles.filterInput}
-        />
-        <button className={styles.filterButton} onClick={handleFilterClick}>
-          <svg className={styles.filterIcon}>
-            <use href="/sprite.svg#icon-filter"></use>
-          </svg>
-          Filter
-        </button>
+        <div className={styles.searchWrapper}>
+          <input
+            type="text"
+            placeholder="User Name"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className={styles.filterInput}
+          />
+          <button className={styles.filterButton} onClick={handleFilterClick}>
+            <svg className={styles.filterIcon}>
+              <use href="/sprite.svg#icon-filter"></use>
+            </svg>
+            Filter
+          </button>
+        </div>
         <button
           className={styles.openModalButton}
           onClick={() => setIsModalOpen(true)}
         >
-          Add Order
+          Add a new order
         </button>
       </div>
 

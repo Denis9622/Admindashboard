@@ -9,7 +9,7 @@ const OrdersTable = ({ orders, handleEditOrder, handleDeleteOrder }) => {
           <table>
             <thead>
               <tr>
-                <th>User</th>
+                <th>User Info</th>
                 <th>Address</th>
                 <th>Products</th>
                 <th>Order Date</th>

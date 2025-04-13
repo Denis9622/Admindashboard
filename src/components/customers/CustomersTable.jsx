@@ -13,7 +13,7 @@ const CustomersTable = ({
           <table>
             <thead>
               <tr>
-                <th>Name</th>
+                <th>User Info</th>
                 <th>Email</th>
                 <th>Address</th>
                 <th>Phone</th>

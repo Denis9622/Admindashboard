@@ -31,38 +31,48 @@ api.interceptors.response.use(
   async (error) => {
     const originalRequest = error.config;
 
-    // Проверяем, что это не запрос на логин и получили 401
+    if (!error.response) {
+      return Promise.reject(error);
+    }
+
+    // Если получили 403, значит токен недействителен
+    if (error.response.status === 403) {
+      localStorage.clear();
+      setAuthHeader(null);
+      return Promise.reject(error);
+    }
+
+    // Обрабатываем только 401 ошибку для запросов, не связанных с авторизацией
     if (
-      error.response?.status === 401 && 
+      error.response.status === 401 && 
       !originalRequest._retry &&
-      !originalRequest.url.includes('/auth/login')
+      !originalRequest.url.includes('/auth/login') &&
+      !originalRequest.url.includes('/auth/refresh')
     ) {
       originalRequest._retry = true;
 
       try {
+        // Пробуем обновить токен
         const response = await api.post("/auth/refresh");
         const { accessToken } = response.data;
 
-        localStorage.setItem("token", accessToken);
-        setAuthHeader(accessToken);
+        if (!accessToken) {
+          throw new Error("Не получен новый токен доступа");
+        }
 
-        originalRequest.headers["Authorization"] = `Bearer ${accessToken}`;
+        // Обновляем токен и повторяем запрос
+        localStorage.setItem("token", accessToken);
+        await setAuthHeader(accessToken);
         return api(originalRequest);
+
       } catch (refreshError) {
-        localStorage.removeItem("token");
-        localStorage.removeItem("user");
-        window.location.href = "/login";
+        // Если не удалось обновить токен, очищаем данные и перенаправляем на логин
+        localStorage.clear();
         return Promise.reject(refreshError);
       }
     }
 
-    // Если получили 403 - токен недействителен
-    if (error.response?.status === 403) {
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      window.location.href = "/login";
-    }
-
+    // Для остальных ошибок просто возвращаем их
     return Promise.reject(error);
   }
 );

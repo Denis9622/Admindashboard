@@ -1,3 +1,6 @@
+@use '../../styles/mixins' as *;
+
+
 .sidebar {
   background-color: #f7f8fa;
   width: 78px;
@@ -35,10 +38,9 @@
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background-color: #fff; /* Белый фон кнопки */
+  background-color: #fff;
   margin: 14px 0;
   box-shadow: 0px -1px 7px 0px rgba(71, 71, 71, 0.05);
-
   transition: background 0.3s ease;
 }
 
@@ -49,14 +51,15 @@
   transition: color 0.3s ease;
 }
 
-.menuItem.active,
-.menuItem:hover {
-  background-color: #e8e8e8; /* Светло-серый фон активной кнопки */
+/* Обновляем стили для активного состояния и ховера */
+.menuItem:hover,
+.menuItem.active {
+  background-color: rgba(89, 177, 122, 0.1);
 }
 
-.menuItem.active .icon,
-.menuItem:hover .icon {
-  fill: #2c8f4b; /* Зеленый цвет активной иконки */
+.menuItem:hover .icon,
+.menuItem.active .icon {
+  fill: #2c8f4b;
 }
 .closeButton {
   position: absolute;

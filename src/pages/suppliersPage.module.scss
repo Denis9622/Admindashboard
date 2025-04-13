@@ -22,18 +22,78 @@
 /* Фильтр */
 .filterContainer {
   display: flex;
-  align-items: center;
-  justify-content: left;
+  flex-wrap: wrap;
   margin-bottom: 20px;
+  gap: 16px;
+  
+  @include media($tablet) {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .searchWrapper {
+    display: flex;
+
+    @include media($laptop) {
+      width: auto;
+    }
+  }
+
+  .openModalButton {
+    justify-content: center;
+    border: 1px solid #59B17A80;
+    background: transparent;
+    color: #1D1E21;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 18px;
+    letter-spacing: 0%;
+    vertical-align: middle;
+    padding: 13px 30px;
+    border-radius: 60px;
+    cursor: pointer;
+    display: flex;
+
+    @include media($tablet) {
+      margin-left: auto;
+    }
+
+    &:hover {
+      background-color: rgba(63, 148, 95, 1);
+      color: white;
+    }
+  }
 }
 
 .filterInput {
-  padding: 13px 18px;
-  margin-right: 10px;
+  padding: 0px 18px;
+  margin-right: 8px;
   border: 1px solid rgba(29, 30, 33, 0.1);
   border-radius: 60px;
-  width: 224px;
+  width: 215px;
+  height: 44px;
   box-shadow: 0px -1px 5px 0px rgba(71, 71, 71, 0.05);
+  font-size: 12px;
+  line-height: 44px;
+  
+  &::placeholder {
+    color: rgba(29, 30, 33, 0.4);
+    font-weight: 400;
+    letter-spacing: 0px;
+  }
+  
+  &:focus {
+    outline: none;
+    border-color: rgba(89, 177, 122, 1);
+  }
+
+  @include media($laptop) {
+    width: auto;
+    &::placeholder {
+      font-size: 12px;
+    }
+  }
 }
 
 .filterButton {
@@ -45,31 +105,29 @@
   border: none;
   border-radius: 60px;
   cursor: pointer;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 18px;
+  letter-spacing: 0%;
+
+  @include media($laptop) {
+    font-size: 14px;
+    line-height: 18px;
+  }
+
+  &:hover {
+    background-color: rgba(63, 148, 95, 1);
+  }
 }
 
-.filterButton:hover {
-  background-color: #45a049;
-}
 
 .filterIcon {
   width: 16px;
   height: 16px;
   margin-right: 8px;
   fill: white;
-}
-
-.openModalButton {
-  display: flex;
-  padding: 13px 30px;
-  background-color: rgba(89, 177, 122, 1);
-  color: white;
-  border: none;
-  border-radius: 60px;
-  cursor: pointer;
-  margin-left: auto;
-}
-.openModalButton:hover {
-  background-color: #45a049;
+  stroke: white;
+  stroke-width: 2;
 }
 
 /* Таблица */

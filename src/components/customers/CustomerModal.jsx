@@ -1,28 +1,53 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import {
-  addCustomer,
-  updateCustomer,
-} from "../../redux/customers/customersOperations";
-import styles from "./customerModal.module.css";
+import { addCustomer, updateCustomer } from "../../redux/customers/customersOperations";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+import styles from "./customerModal.module.scss";
 
 const CustomerModal = ({ customer, onClose }) => {
   const dispatch = useDispatch();
-  const [formData, setFormData] = useState({
-    name: customer ? customer.name : "",
-    email: customer ? customer.email : "",
-    address: customer ? customer.address : "",
-    phone: customer ? customer.phone : "",
+
+  const validationSchema = Yup.object().shape({
+    name: Yup.string().min(2, "Name must be at least 2 characters").required("Name is required"),
+    email: Yup.string().email("Invalid email address").required("Email is required"),
+    address: Yup.string().required("Address is required"),
+    phone: Yup.string()
+      .matches(/^\+?[0-9]{7,14}$/, "Invalid phone number")
+      .required("Phone is required"),
   });
 
-  const handleSubmit = async () => {
+  const {
+    register,
+    handleSubmit,
+    reset,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+    defaultValues: {
+      name: customer?.name || "",
+      email: customer?.email || "",
+      address: customer?.address || "",
+      phone: customer?.phone || ""
+    }
+  });
+
+  useEffect(() => {
+    reset({
+      name: customer?.name || "",
+      email: customer?.email || "",
+      address: customer?.address || "",
+      phone: customer?.phone || ""
+    });
+  }, [customer, reset]);
+
+  const onSubmit = async (data) => {
     try {
       if (customer) {
-        await dispatch(
-          updateCustomer({ id: customer._id, customerData: formData })
-        );
+        await dispatch(updateCustomer({ id: customer._id, customerData: data }));
       } else {
-        await dispatch(addCustomer(formData));
+        await dispatch(addCustomer(data));
       }
       onClose();
     } catch (error) {
@@ -39,50 +64,48 @@ const CustomerModal = ({ customer, onClose }) => {
           </svg>
         </button>
         <h2>{customer ? "Edit Customer" : "Add Customer"}</h2>
-        <form className={styles.form}>
+
+        {/* структура формы не изменена! */}
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.leftColumn}>
             <input
               type="text"
               placeholder="Name"
-              value={formData.name}
-              onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
-              }
-              required
+              {...register("name")}
+              className={errors.name ? styles.inputError : ""}
             />
+            {errors.name && <p className={styles.error}>{errors.name.message}</p>}
+
             <input
               type="email"
               placeholder="Email"
-              value={formData.email}
-              onChange={(e) =>
-                setFormData({ ...formData, email: e.target.value })
-              }
-              required
+              {...register("email")}
+              className={errors.email ? styles.inputError : ""}
             />
+            {errors.email && <p className={styles.error}>{errors.email.message}</p>}
           </div>
+
           <div className={styles.rightColumn}>
             <input
               type="text"
               placeholder="Address"
-              value={formData.address}
-              onChange={(e) =>
-                setFormData({ ...formData, address: e.target.value })
-              }
-              required
+              {...register("address")}
+              className={errors.address ? styles.inputError : ""}
             />
+            {errors.address && <p className={styles.error}>{errors.address.message}</p>}
+
             <input
               type="text"
               placeholder="Phone"
-              value={formData.phone}
-              onChange={(e) =>
-                setFormData({ ...formData, phone: e.target.value })
-              }
-              required
+              {...register("phone")}
+              className={errors.phone ? styles.inputError : ""}
             />
+            {errors.phone && <p className={styles.error}>{errors.phone.message}</p>}
           </div>
         </form>
+
         <div className={styles.buttonContainer}>
-          <button className={styles.primaryButton} onClick={handleSubmit}>
+          <button className={styles.primaryButton} onClick={handleSubmit(onSubmit)}>
             {customer ? "Update Customer" : "Add Customer"}
           </button>
           <button type="button" onClick={onClose}>

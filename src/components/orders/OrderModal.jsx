@@ -1,32 +1,63 @@
-import { useState } from "react";
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addOrder, updateOrder } from "../../redux/orders/ordersOperations";
-import styles from "./orderModal.module.css";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as Yup from "yup";
+import styles from "./orderModal.module.scss";
 
 const OrderModal = ({ order, onClose }) => {
   const dispatch = useDispatch();
   const { items: customers } = useSelector((state) => state.customers);
 
-  const [formData, setFormData] = useState({
-    customerId: order ? order.customerId : "",
-    address: order ? order.address : "",
-    products: order ? order.products.join(",") : "",
-    orderDate: order ? order.orderDate : new Date().toISOString().slice(0, 16),
-    price: order ? order.price : 0,
-    status: order ? order.status : "Pending",
+  const validationSchema = Yup.object().shape({
+    customerId: Yup.string().required("Please select a customer"),
+    address: Yup.string().required("Address is required"),
+    products: Yup.string().required("Products are required"),
+    orderDate: Yup.string().required("Order date is required"),
+    price: Yup.number().min(0, "Price must be at least 0").required("Price is required"),
+    status: Yup.string().oneOf(
+      ["Pending", "Shipped", "Delivered"],
+      "Invalid status"
+    ).required("Status is required")
   });
 
-  const handleSubmit = async () => {
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    formState: { errors }
+  } = useForm({
+    resolver: yupResolver(validationSchema),
+    defaultValues: {
+      customerId: order?.customerId || "",
+      address: order?.address || "",
+      products: order?.products?.join(",") || "",
+      orderDate: order?.orderDate || new Date().toISOString().slice(0, 16),
+      price: order?.price || 0,
+      status: order?.status || "Pending"
+    }
+  });
+
+  useEffect(() => {
+    if (order) {
+      setValue("customerId", order.customerId);
+      setValue("address", order.address);
+      setValue("products", order.products.join(","));
+      setValue("orderDate", order.orderDate);
+      setValue("price", order.price);
+      setValue("status", order.status);
+    }
+  }, [order, setValue]);
+
+  const onSubmit = async (data) => {
     try {
-      const updatedOrder = {
-        ...formData,
-        products: formData.products.split(","),
-      };
+      const preparedData = { ...data, products: data.products.split(",") };
 
       if (order) {
-        await dispatch(updateOrder({ id: order._id, orderData: updatedOrder }));
+        await dispatch(updateOrder({ id: order._id, orderData: preparedData }));
       } else {
-        await dispatch(addOrder(updatedOrder));
+        await dispatch(addOrder(preparedData));
       }
       onClose();
     } catch (error) {
@@ -43,15 +74,10 @@ const OrderModal = ({ order, onClose }) => {
           </svg>
         </button>
         <h2>{order ? "Edit Order" : "Add Order"}</h2>
-        <form className={styles.form}>
+
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.leftColumn}>
-            <select
-              value={formData.customerId}
-              onChange={(e) =>
-                setFormData({ ...formData, customerId: e.target.value })
-              }
-              className={styles.select}
-            >
+            <select {...register("customerId")} className={styles.select}>
               <option value="">Select Customer</option>
               {customers.map((customer) => (
                 <option key={customer._id} value={customer._id}>
@@ -59,65 +85,58 @@ const OrderModal = ({ order, onClose }) => {
                 </option>
               ))}
             </select>
+            {errors.customerId && <p className={styles.error}>{errors.customerId.message}</p>}
+
             <input
               type="text"
               placeholder="Address"
-              value={formData.address}
-              onChange={(e) =>
-                setFormData({ ...formData, address: e.target.value })
-              }
-              required
+              {...register("address")}
+              className={errors.address ? styles.inputError : ""}
             />
+            {errors.address && <p className={styles.error}>{errors.address.message}</p>}
+
             <input
               type="text"
               placeholder="Products (comma separated)"
-              value={formData.products}
-              onChange={(e) =>
-                setFormData({ ...formData, products: e.target.value })
-              }
-              required
+              {...register("products")}
+              className={errors.products ? styles.inputError : ""}
             />
+            {errors.products && <p className={styles.error}>{errors.products.message}</p>}
           </div>
+
           <div className={styles.rightColumn}>
             <div className={styles.dateInputContainer}>
               <input
                 type="datetime-local"
-                value={formData.orderDate}
-                onChange={(e) =>
-                  setFormData({ ...formData, orderDate: e.target.value })
-                }
-                required
+                {...register("orderDate")}
+                className={errors.orderDate ? styles.inputError : ""}
               />
               <svg className={styles.calendarIcon}>
                 <use href="/public/sprite.svg#icon-calendar-small"></use>
               </svg>
             </div>
+            {errors.orderDate && <p className={styles.error}>{errors.orderDate.message}</p>}
+
             <input
               type="number"
               placeholder="Price"
-              value={formData.price}
-              onChange={(e) =>
-                setFormData({ ...formData, price: Number(e.target.value) })
-              }
-              required
+              {...register("price")}
+              className={errors.price ? styles.inputError : ""}
             />
-            <select
-              value={formData.status}
-              onChange={(e) =>
-                setFormData({ ...formData, status: e.target.value })
-              }
-              className={styles.select}
-            >
+            {errors.price && <p className={styles.error}>{errors.price.message}</p>}
+
+            <select {...register("status")} className={styles.select}>
               <option value="Pending">Pending</option>
-              <option value="Processing">Processing</option>
+              <option value="Shipped">Shipped</option>
               <option value="Delivered">Delivered</option>
-              <option value="Confirmed">Confirmed</option>
-              <option value="Cancelled">Cancelled</option>
             </select>
+            {errors.status && <p className={styles.error}>{errors.status.message}</p>}
           </div>
         </form>
+
+        {/* Кнопки оставлены ВНЕ формы, как у тебя было! */}
         <div className={styles.buttonContainer}>
-          <button className={styles.primaryButton} onClick={handleSubmit}>
+          <button className={styles.primaryButton} onClick={handleSubmit(onSubmit)}>
             {order ? "Update Order" : "Add Order"}
           </button>
           <button type="button" onClick={onClose}>
