@@ -24,7 +24,7 @@ function Header({ toggleSidebar }) {
       case '/products':
         return 'All products';
       case '/suppliers':
-        return 'All puppliers';
+        return 'All suppliers';
       default:
         return 'Dashboard';
     }

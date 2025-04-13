@@ -209,3 +209,24 @@ h2 {
   fill: currentColor;
   pointer-events: none;
 }
+
+select,
+input[type="datetime-local"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff; // Принудительно устанавливаем белый фон
+}
+
+// Для iOS устройств
+select,
+input[type="datetime-local"] {
+  &::-webkit-datetime-edit-fields-wrapper,
+  &::-webkit-datetime-edit {
+    background-color: transparent;
+  }
+  
+  &::-webkit-calendar-picker-indicator {
+    background-color: transparent;
+  }
+}

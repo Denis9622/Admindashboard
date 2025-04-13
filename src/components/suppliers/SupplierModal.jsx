@@ -111,8 +111,8 @@ const SupplierModal = ({ supplier, onClose }) => {
             </div>
             {errors.deliveryDate && <p className={styles.error}>{errors.deliveryDate.message}</p>}
 
-            <select {...register("status")}>
-              <option value="">Status</option>
+            <select {...register("status")} defaultValue="">
+      <option value="" disabled>Status</option>
               <option value="Active">Active</option>
               <option value="Deactive">Deactive</option>
             </select>

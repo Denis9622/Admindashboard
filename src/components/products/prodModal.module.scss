@@ -188,3 +188,20 @@ color: #1d1e21;
   margin-bottom: 40px;
   }
 }
+
+select,
+input[type="datetime-local"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background-color: #fff !important;
+
+  &::-webkit-datetime-edit-fields-wrapper,
+  &::-webkit-datetime-edit {
+    background-color: transparent;
+  }
+  
+  &::-webkit-calendar-picker-indicator {
+    background-color: transparent;
+  }
+}
