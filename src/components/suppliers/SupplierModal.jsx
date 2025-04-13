@@ -31,6 +31,7 @@ const SupplierModal = ({ supplier, onClose }) => {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(supplierSchema),
+    // В defaultValues изменить
     defaultValues: {
       name: supplier?.name || "",
       company: supplier?.company || "",
@@ -39,7 +40,7 @@ const SupplierModal = ({ supplier, onClose }) => {
       deliveryDate: supplier?.deliveryDate
         ? new Date(supplier.deliveryDate).toISOString().slice(0, 16)
         : new Date().toISOString().slice(0, 16),
-      status: supplier?.status || "Status",
+      status: supplier?.status || "", // Изменено с "Status" на пустую строку
     },
   });
 
@@ -111,11 +112,11 @@ const SupplierModal = ({ supplier, onClose }) => {
             </div>
             {errors.deliveryDate && <p className={styles.error}>{errors.deliveryDate.message}</p>}
 
-            <select {...register("status")} defaultValue="">
-      <option value="" disabled>Status</option>
-              <option value="Active">Active</option>
-              <option value="Deactive">Deactive</option>
-            </select>
+            <select {...register("status")}>
+  <option value="" disabled>Status</option>
+  <option value="Active">Active</option>
+  <option value="Deactive">Deactive</option>
+</select>
             {errors.status && <p className={styles.error}>{errors.status.message}</p>}
           </div>
         </form>
