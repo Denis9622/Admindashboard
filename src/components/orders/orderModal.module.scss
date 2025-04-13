@@ -135,10 +135,7 @@
   .primaryButton {
     background-color: rgba(89, 177, 122, 1);
     color: white;
-    @include media($tablet) {
-        margin-right: 8px;
-
-    }
+    margin-right: 8px;
 
   }
   
