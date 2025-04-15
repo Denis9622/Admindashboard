@@ -189,7 +189,6 @@
     line-height: 18px;
   }
   
-  /* Скрываем иконку календаря (Chrome, Edge) */
   .dateInputContainer
     input[type="datetime-local"]::-webkit-calendar-picker-indicator {
     opacity: 0;
@@ -201,7 +200,6 @@
     cursor: pointer;
   }
   
-  /* Firefox */
   .dateInputContainer
     input[type="datetime-local"]::-moz-calendar-picker-indicator {
     display: none;

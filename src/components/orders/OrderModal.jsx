@@ -134,7 +134,6 @@ const OrderModal = ({ order, onClose }) => {
           </div>
         </form>
 
-        {/* Кнопки оставлены ВНЕ формы, как у тебя было! */}
         <div className={styles.buttonContainer}>
           <button className={styles.primaryButton} onClick={handleSubmit(onSubmit)}>
             {order ? "Update Order" : "Add Order"}

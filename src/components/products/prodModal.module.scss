@@ -6,10 +6,10 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Затемнение фона */
+  background-color: rgba(0, 0, 0, 0.5); 
   display: flex;
-  justify-content: center; /* Центрирование модального окна */
-  align-items: center; /* По вертикали */
+  justify-content: center; 
+  align-items: center; 
   z-index: 1000;
 }
 
@@ -141,19 +141,19 @@ form select:focus {
 
 /* Кнопки Submit и Cancel */
 .buttonContainer button[type="submit"] {
-  background-color: rgba(89, 177, 122, 1); /* Зеленый */
+  background-color: rgba(89, 177, 122, 1); 
   color: white;
   margin-right: 8px;
 }
 
 .buttonContainer button[type="submit"]:hover {
-  background-color: rgba(63, 148, 95, 1); /* Темнее при наведении */
+  background-color: rgba(63, 148, 95, 1); 
 }
 
 .buttonContainer button[type="button"] {
   background-color: rgba(29, 30, 33, 0.1);
   color: rgba(29, 30, 33, 0.4);
-  border: 1px solid transparent; /* Прозрачная рамка в обычном состоянии */
+  border: 1px solid transparent; 
 }
 
 .buttonContainer button[type="button"]:hover {
@@ -169,7 +169,7 @@ form select:focus {
 }
 
 .primaryButton:hover {
-  background-color: rgba(63, 148, 95, 1); /* Темнее при наведении */
+  background-color: rgba(63, 148, 95, 1); 
 }
 
 /* Заголовок модального окна */

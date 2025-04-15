@@ -65,7 +65,6 @@ const CustomerModal = ({ customer, onClose }) => {
         </button>
         <h2>{customer ? "Edit Customer" : "Add Customer"}</h2>
 
-        {/* структура формы не изменена! */}
         <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <div className={styles.leftColumn}>
             <input

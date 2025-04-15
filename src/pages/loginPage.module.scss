@@ -28,15 +28,12 @@
     overflow: hidden; 
 
 
-    @include media($tablet) {
-      /* flex-direction: row; */
-      /* padding: 0 40px 150px 40px; */
-    }
+    // @include media($tablet) {
+
+    // }
 
     @include media($desktop) {
-      flex-direction: row;
-    //   margin-left: 20px;
-    }
+      flex-direction: row;    }
   }
 
   .leftSide {
@@ -46,7 +43,6 @@
 
     @include media($tablet) {
       width: 614px;
-      /* margin-right: 150px; */
       text-align: left;
     }
 
@@ -89,7 +85,6 @@
     left: 220px;
     width: 95px;
     height: 93px;
-    /* margin: 40px auto; */
 
     @include media($tablet) {
       position: absolute;
@@ -103,7 +98,6 @@
       position: absolute;
       top: 174px;
       left: 416px;
-    //   right: 725px;
       width: 179px;
       height: 175px;
     }

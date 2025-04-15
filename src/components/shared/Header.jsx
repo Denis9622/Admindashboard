@@ -1,18 +1,17 @@
 import { useSelector, useDispatch } from "react-redux";
 import { logoutUser } from "../../redux/auth/authOperations";
-import { useNavigate, NavLink, useLocation } from "react-router-dom"; // Добавляем useLocation
+import { useNavigate, NavLink, useLocation } from "react-router-dom"; 
 import styles from "./Header.module.scss";
 import Logo from "../assets/authenticatedLogo.svg";
 
 function Header({ toggleSidebar }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const location = useLocation(); // Получаем текущий путь
+  const location = useLocation(); 
 
   const user = useSelector((state) => state.auth.user);
   const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
 
-  // Функция для определения заголовка на основе пути
   const getPageTitle = () => {
     switch (location.pathname) {
       case '/':

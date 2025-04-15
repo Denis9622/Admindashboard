@@ -9,7 +9,6 @@ import SharedLayout from "./components/shared/SharedLayout";
 import Loader from "./components/Loader/Loader.jsx";
 import css from "./App.module.css";
 
-// Ленивое подключение страниц
 const DashboardPage = lazy(() => import("./pages/DashboardPage.jsx"));
 const OrdersPage = lazy(() => import("./pages/OrdersPage.jsx"));
 const ProductsPage = lazy(() => import("./pages/ProductsPage.jsx"));
@@ -30,7 +29,7 @@ export default function App() {
     const user = localStorage.getItem("user");
 
     if (token && user) {
-      dispatch(setUser(JSON.parse(user))); // Восстанавливаем данные пользователя
+      dispatch(setUser(JSON.parse(user))); 
     } else {
       dispatch(clearAuthState());
     }
@@ -100,7 +99,6 @@ export default function App() {
                 }
               />
             </Route>
-            {/* Авторизация */}
             <Route
               path="/login"
               element={

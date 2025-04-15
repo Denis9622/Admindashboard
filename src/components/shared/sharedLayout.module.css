@@ -1,21 +1,3 @@
-/* Общие стили */
-/* .layout {
-  display: flex;
-  flex-direction: column;
-} */
-
-/* Стили для авторизованных пользователей */
-
-/* .content {
-  display: flex;
-} */
-
-/* .authenticatedSidebar {
-  width: 250px; 
-  background-color: #f4f4f4; 
-  padding: 20px;
-} */
-
 .layout {
-  background-color: #f7f8fa; /* Фон для основного содержимого авторизованных пользователей */
+  background-color: #f7f8fa; 
 }

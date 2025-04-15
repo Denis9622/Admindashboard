@@ -12,26 +12,24 @@ import styles from "./productsPage.module.scss";
 const ProductsPage = () => {
   const dispatch = useDispatch();
   const { items, loading, error } = useSelector((state) => state.products);
-  const [searchQuery, setSearchQuery] = useState(""); // Поле ввода для фильтрации
-  const [filteredProducts, setFilteredProducts] = useState([]); // Для фильтрованных данных
+  const [searchQuery, setSearchQuery] = useState(""); 
+  const [filteredProducts, setFilteredProducts] = useState([]); 
   const [isModalOpen, setModalOpen] = useState(false);
   const [currentProduct, setCurrentProduct] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 5;
 
-  // Загрузка данных продуктов
   useEffect(() => {
     dispatch(fetchProducts())
       .unwrap()
-      .then((fetchedItems) => setFilteredProducts(fetchedItems)) // Синхронизируем с загруженными данными
+      .then((fetchedItems) => setFilteredProducts(fetchedItems)) 
       .catch((error) => {
         if (error === "Refresh token required") {
           dispatch(refreshToken()).then(() => dispatch(fetchProducts()));
         }
       });
-  }, [dispatch, isModalOpen]); // Добавляем зависимость isModalOpen
+  }, [dispatch, isModalOpen]); 
 
-  // Обработчик кнопки "Filter"
   const handleFilter = () => {
     const filtered = items.filter((product) =>
       product.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -39,30 +37,26 @@ const ProductsPage = () => {
     setFilteredProducts(filtered);
   };
 
-  // Обработчик редактирования продукта
   const handleEditProduct = async (product) => {
     setCurrentProduct(product);
     setModalOpen(true);
   };
 
-  // Обработчик удаления продукта
   const handleDeleteProduct = async (_id) => {
     try {
-      await dispatch(deleteProduct(_id)).unwrap(); // Удаляем продукт
-      const updatedProducts = items.filter((product) => product._id !== _id); // Обновляем локальное состояние
-      setFilteredProducts(updatedProducts); // Синхронизируем локальное состояние
+      await dispatch(deleteProduct(_id)).unwrap(); 
+      const updatedProducts = items.filter((product) => product._id !== _id); 
+      setFilteredProducts(updatedProducts);
     } catch (error) {
       console.error("Ошибка при удалении продукта:", error);
     }
   };
 
-  // Обработчик добавления продукта
   const handleAddProduct = async () => {
     setCurrentProduct(null);
     setModalOpen(true);
   };
 
-  // Получение текущих продуктов
   const indexOfLastProduct = currentPage * itemsPerPage;
   const indexOfFirstProduct = indexOfLastProduct - itemsPerPage;
   const currentProducts = filteredProducts.slice(
@@ -70,7 +64,6 @@ const ProductsPage = () => {
     indexOfLastProduct
   );
 
-  // Изменение страницы
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   return (
