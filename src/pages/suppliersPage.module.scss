@@ -1,4 +1,3 @@
-/* Общий контейнер */
 @use '../styles/mixins' as *;
 
 .suppliersPage {
@@ -12,14 +11,12 @@
   }
 }
 
-/* Заголовок */
 .suppliersPage h1 {
   text-align: center;
   margin-bottom: 20px;
   color: #333;
 }
 
-/* Фильтр */
 .filterContainer {
   display: flex;
   flex-wrap: wrap;
@@ -130,7 +127,6 @@
   stroke-width: 2;
 }
 
-/* Таблица */
 .suppliersTable {
   width: 100%;
   margin-top: 20px;
@@ -154,7 +150,6 @@
 }
 
 .tableHeader {
-  /* background-color: #f2f2f2; */
   font-weight: bold;
   text-align: center;
 }
@@ -164,7 +159,6 @@
 }
 
 .tableRow div {
-  /* flex: 1; */
   text-align: center;
 }
 
@@ -193,7 +187,6 @@
   text-align: center;
 }
 
-/* Форма */
 .form {
   display: flex;
   flex-direction: column;
@@ -228,7 +221,6 @@
   background-color: #45a049;
 }
 
-/* Модальное окно */
 .modalBackdrop {
   position: fixed;
   top: 0;
@@ -266,7 +258,6 @@
   color: #f44336;
 }
 
-/* Анимация модального окна */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -286,7 +277,7 @@
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: center; /* Центрирование */
+  justify-content: center; 
   margin-top: 20px;
   margin-bottom: 40px;
   gap: 8px;
